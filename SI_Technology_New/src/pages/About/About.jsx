@@ -120,7 +120,7 @@ export default function About() {
       tag: "Since 2018",
       desc: "Serving manufacturing hubs across India since 2018 with reliable assembly guides and post-sales installation support.",
       specs: ["Established 2018 in Pune", "Serving 500+ Hubs Across India", "Comprehensive Assembly Guides", "Turnkey On-Site Support"],
-      img: "/images/about_strength_04.jpg",
+      img: "/images/about_strength_04.png",
       bg: "bg-[#030712]",
     },
   ];
