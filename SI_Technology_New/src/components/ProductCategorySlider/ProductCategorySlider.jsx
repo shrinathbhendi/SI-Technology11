@@ -61,7 +61,7 @@ function FlipCard({ cat, isActive }) {
 
         {/* ── BACK: Info ── */}
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl border-2 border-accent-500/60 bg-[#0d1b2e] flex flex-col justify-between p-6"
+          className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl border-2 border-zinc-800 bg-[#09090b] flex flex-col justify-between p-6"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -173,11 +173,11 @@ export default function ProductCategorySlider({ categories }) {
   };
 
   return (
-    <section className="py-12 sm:py-16 bg-[rgb(101,144,166)] relative overflow-hidden">
+    <section className="py-12 sm:py-16 bg-[#0a1128] relative overflow-hidden">
       {/* Background decor */}
-      <div className="absolute inset-0 bg-grid-light opacity-[0.04] pointer-events-none" />
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent-500/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-primary-500/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-light opacity-[0.05] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Header */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 relative z-10 text-center flex flex-col items-center">
@@ -188,12 +188,12 @@ export default function ProductCategorySlider({ categories }) {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center gap-3"
         >
-          <div className="flex items-center justify-center gap-2 text-primary-950 text-xs font-mono font-bold uppercase tracking-widest">
-            <span className="w-6 h-0.5 bg-primary-950 rounded-full" />
+          <div className="flex items-center justify-center gap-2 text-blue-400 text-xs font-mono font-bold uppercase tracking-widest">
+            <span className="w-6 h-0.5 bg-blue-500 rounded-full" />
             PRODUCT CATEGORIES
-            <span className="w-6 h-0.5 bg-primary-950 rounded-full" />
+            <span className="w-6 h-0.5 bg-blue-500 rounded-full" />
           </div>
-          <h1 className="text-xl xs:text-2xl sm:text-5xl font-display font-black text-black leading-[1.1]">
+          <h1 className="text-xl xs:text-2xl sm:text-5xl font-display font-black text-white leading-[1.1]">
             Standardized Modular Systems
           </h1>
         </motion.div>
@@ -206,15 +206,15 @@ export default function ProductCategorySlider({ categories }) {
         onMouseLeave={() => { isPaused.current = false; }}
       >
         {/* Left fade */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[rgb(101,144,166)] to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#0a1128] to-transparent z-10 pointer-events-none" />
         {/* Right fade */}
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[rgb(101,144,166)] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#0a1128] to-transparent z-10 pointer-events-none" />
 
         {/* Left arrow — overlaid on slider edge */}
         <button
           onClick={slideLeft}
           aria-label="Previous category"
-          className="absolute left-3 lg:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-14 lg:h-14 rounded-full bg-black/50 hover:bg-accent-500 border border-white/20 hover:border-accent-500 text-white flex items-center justify-center transition-all duration-200 backdrop-blur-sm"
+          className="absolute left-3 lg:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-14 lg:h-14 rounded-full bg-blue-950/80 hover:bg-blue-600 border border-blue-400/30 hover:border-blue-400 text-white flex items-center justify-center transition-all duration-200 backdrop-blur-sm shadow-xl"
         >
           <ChevronLeft className="w-5 h-5 lg:w-7 lg:h-7" />
         </button>
@@ -223,7 +223,7 @@ export default function ProductCategorySlider({ categories }) {
         <button
           onClick={slideRight}
           aria-label="Next category"
-          className="absolute right-3 lg:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-14 lg:h-14 rounded-full bg-black/50 hover:bg-accent-500 border border-white/20 hover:border-accent-500 text-white flex items-center justify-center transition-all duration-200 backdrop-blur-sm"
+          className="absolute right-3 lg:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-14 lg:h-14 rounded-full bg-blue-950/80 hover:bg-blue-600 border border-blue-400/30 hover:border-blue-400 text-white flex items-center justify-center transition-all duration-200 backdrop-blur-sm shadow-xl"
         >
           <ChevronRight className="w-5 h-5 lg:w-7 lg:h-7" />
         </button>
@@ -243,7 +243,7 @@ export default function ProductCategorySlider({ categories }) {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mt-8 relative z-10 text-center">
         <Link
           to="/products"
-          className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-400 hover:bg-accent-500 hover:text-white text-xs font-bold uppercase tracking-wider shadow-lg hover:shadow-accent-500/30 hover:-translate-y-0.5 transition-all duration-300 group/btn"
+          className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-blue-500/40 bg-blue-600 text-white hover:bg-blue-700 text-xs font-bold uppercase tracking-wider shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 transition-all duration-300 group/btn"
         >
           Explore All Categories
           <ArrowRight size={15} className="group-hover/btn:translate-x-1.5 transition-transform duration-300" />

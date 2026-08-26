@@ -31,7 +31,7 @@ export default function FloatingButtons() {
       {/* Phone Call Float */}
       <a
         href={`tel:${SITE_CONFIG.contact.phoneTel}`}
-        className="w-12 h-12 rounded-full bg-[#091b30] hover:bg-[#1e293b] text-white flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer border border-slate-900/10"
+        className="w-12 h-12 rounded-full bg-[#0a1128] hover:bg-blue-900 text-white flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer border border-blue-500/20 shadow-blue-950/40"
         aria-label="Call Us"
         title="Call Us"
       >
@@ -43,7 +43,7 @@ export default function FloatingButtons() {
         href={getWhatsAppUrl("Hi, I am browsing your website and want to discuss custom engineering profiles.")}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-12 h-12 rounded-full bg-green-500 hover:bg-green-400 text-white flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer border border-green-600/10"
+        className="w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer border border-emerald-400/20"
         aria-label="Chat on WhatsApp"
         title="Chat on WhatsApp"
       >
@@ -53,7 +53,7 @@ export default function FloatingButtons() {
       {/* Floating Quote Trigger (Mobile Only, since it's in Navbar on desktop) */}
       <Link
         to="/request-quote"
-        className="w-12 h-12 rounded-full bg-accent-500 hover:bg-accent-400 text-white flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer sm:hidden border border-accent-600/10"
+        className="w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer sm:hidden border border-blue-400/20 shadow-blue-600/40"
         aria-label="Request Quote"
         title="Request Quote"
       >
@@ -64,7 +64,7 @@ export default function FloatingButtons() {
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="w-12 h-12 rounded-full bg-primary-900 hover:bg-primary-800 text-white flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer border border-primary-950/10 animate-fade-in"
+          className="w-12 h-12 rounded-full bg-[#0a1128] hover:bg-blue-600 text-white flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer border border-blue-500/30 animate-fade-in"
           aria-label="Scroll to top"
           title="Scroll to Top"
         >

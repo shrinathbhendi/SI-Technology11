@@ -1,12 +1,86 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, Compass, Heart, Shield, Clock, MessageSquare, ArrowRight, CheckCircle, CheckCircle2, Briefcase, Target, Sparkles, Layers, Cog, TrendingUp, ShieldCheck } from "lucide-react";
+import { Award, Compass, Heart, Shield, Clock, MessageSquare, ArrowRight, CheckCircle, CheckCircle2, Briefcase, Target, Sparkles, Layers, Cog, TrendingUp, ShieldCheck, UserCheck, Calendar, Handshake, User, Building2, ChevronLeft, ChevronRight } from "lucide-react";
 import { SITE_CONFIG, getWhatsAppUrl } from "../../constants/siteConfig";
 
 export default function About() {
   const [activeStrength, setActiveStrength] = useState(0);
+  const [activeProcessStep, setActiveProcessStep] = useState(0);
+  const [isProcessAutoPlaying, setIsProcessAutoPlaying] = useState(true);
+  const [activePhilosophy, setActivePhilosophy] = useState(0);
+  const [isPhilosophyAutoPlaying, setIsPhilosophyAutoPlaying] = useState(true);
+
+  useEffect(() => {
+    if (!isPhilosophyAutoPlaying) return;
+    const interval = setInterval(() => {
+      setActivePhilosophy((prev) => (prev + 1) % 6);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [isPhilosophyAutoPlaying]);
+
+  const processSteps = [
+    {
+      num: "01",
+      title: "Understand",
+      subtitle: "Technical Audit & Spatial Assessment",
+      desc: "We conduct an in-depth technical analysis of the customer's application, load requirements, space constraints, and operating conditions before proposing structural designs.",
+      img: "/images/strength_01.png",
+      tag: "TECHNICAL AUDIT",
+      badgeBg: "bg-blue-600",
+      highlights: ["Comprehensive load & structural audit", "Spatial & ergonomic workflow assessment", "Technical constraint analysis"]
+    },
+    {
+      num: "02",
+      title: "Recommend",
+      subtitle: "Product Selection & Optimization",
+      desc: "We identify suitable products, materials, and engineering solutions tailored specifically to your load capacity and budget requirements.",
+      img: "/images/profile_app/pa_004.jpg",
+      tag: "PRODUCT SELECTION",
+      badgeBg: "bg-sky-600",
+      highlights: ["Optimal profile series selection (20, 30, 40, 45)", "Cost & weight structural optimization", "Modular expansion planning"]
+    },
+    {
+      num: "03",
+      title: "Design",
+      subtitle: "3D CAD Drafting & Structural Blueprints",
+      desc: "Our engineering team drafts precision 3D CAD models and structural assembly blueprints tailored strictly to your manufacturing floor dimensions.",
+      img: "/images/strength_02.png",
+      tag: "CAD DRAFTING",
+      badgeBg: "bg-teal-600",
+      highlights: ["3D assembly model creation", "Custom enclosure & workstation layout", "Detailed Bill of Materials (BOM)"]
+    },
+    {
+      num: "04",
+      title: "Supply & Execute",
+      subtitle: "Precision Build & Quality Delivery",
+      desc: "We coordinate required products, pre-cut, tap, and assemble customized solutions with a strict focus on quality and timely delivery.",
+      img: "/images/workstations/workstations_005.jpg",
+      tag: "QUALITY EXECUTION",
+      badgeBg: "bg-emerald-600",
+      highlights: ["Precision CNC profile cutting & tapping", "Multi-stage surface inspection", "Flatpack or pre-assembled dispatch"]
+    },
+    {
+      num: "05",
+      title: "Support",
+      subtitle: "Turnkey Installation & Long-term Support",
+      desc: "We maintain clear communication throughout the project, providing on-site installation support and future shopfloor expansion assistance.",
+      img: "/images/step05_turnkey_support.png",
+      tag: "TURNKEY SUPPORT",
+      badgeBg: "bg-indigo-600",
+      highlights: ["On-site installation support", "Immediate spare parts & accessories", "Future expansion & modular upgrades"]
+    }
+  ];
+
+  // Auto-move process slider every 3.5 seconds
+  useEffect(() => {
+    if (!isProcessAutoPlaying) return;
+    const interval = setInterval(() => {
+      setActiveProcessStep((prev) => (prev + 1) % processSteps.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [isProcessAutoPlaying, processSteps.length]);
 
   const coreStrengths = [
     {
@@ -17,7 +91,7 @@ export default function About() {
       desc: "Aluminium Alloy 6063 T6 with silver or black matte anodizing exceeding 15 microns for maximum durability and surface quality.",
       specs: ["Alloy Grade: 6063 T6", "Anodizing: >15 microns", "Corrosion Resistant", "European ISO Standards Compliance"],
       img: "/images/strength_01.png",
-      bg: "bg-slate-900",
+      bg: "bg-[#0a1128]",
     },
     {
       icon: Cog,
@@ -27,7 +101,7 @@ export default function About() {
       desc: "We design and pre-fabricate custom machine enclosures, robotic cells, conveyors, and workstations to match your exact CAD files.",
       specs: ["3D CAD Precision Drafting", "Custom Enclosure Layouts", "Conveyor & Robotic Frame Engineering", "Pre-Tapped flatpacks"],
       img: "/images/strength_02.png",
-      bg: "bg-primary-900",
+      bg: "bg-blue-900",
     },
     {
       icon: TrendingUp,
@@ -37,7 +111,7 @@ export default function About() {
       desc: "Modular pipe & joint systems, FIFO flow racks, and height-adjustable desks engineered to streamline every assembly line.",
       specs: ["Modular Pipe & Joint Systems", "FIFO Flow Racks", "Height-Adjustable Desks", "Lean Kaizen Optimization"],
       img: "/images/about_strength_03.png",
-      bg: "bg-zinc-900",
+      bg: "bg-[#0f172a]",
     },
     {
       icon: ShieldCheck,
@@ -47,83 +121,40 @@ export default function About() {
       desc: "Serving manufacturing hubs across India since 2018 with reliable assembly guides and post-sales installation support.",
       specs: ["Established 2018 in Pune", "Serving 500+ Hubs Across India", "Comprehensive Assembly Guides", "Turnkey On-Site Support"],
       img: "/images/about_strength_04.jpg",
-      bg: "bg-primary-950",
+      bg: "bg-[#030712]",
     },
   ];
 
   const coreValues = [
     {
-      icon: Shield,
-      title: "Uncompromising Quality",
-      desc: "We use only high-grade Aluminium Alloy 6063 T6, ensuring every profile extrusion and accessory connector meets strict industrial tolerances."
+      icon: Compass,
+      title: "Technical Understanding",
+      desc: "We focus on understanding the application and technical requirements before recommending a solution."
     },
     {
-      icon: Compass,
-      title: "Technical Transparency",
-      desc: "No hidden costs. We provide exact weight, surface area, and load-capacity specifications so engineers can design structures with confidence."
+      icon: Layers,
+      title: "Wide Product Range",
+      desc: "Our extensive range of aluminium profiles, accessories, industrial products and material-handling solutions enables customers to source multiple requirements from one partner."
+    },
+    {
+      icon: Cog,
+      title: "Customized Solutions",
+      desc: "Industrial requirements are rarely identical. We support customized solutions based on dimensions, application, workspace and operational requirements."
+    },
+    {
+      icon: ShieldCheck,
+      title: "Quality Focus",
+      desc: "We focus on providing dependable industrial products suitable for demanding manufacturing environments."
+    },
+    {
+      icon: MessageSquare,
+      title: "Responsive Support",
+      desc: "From enquiry and quotation to order coordination and delivery, we aim to provide clear and timely communication."
     },
     {
       icon: Heart,
-      title: "Vested Partnerships",
-      desc: "We aren't just selling hardware. We act as long-term advisors, reviewing CAD models, proposing modifications, and ensuring layout fits."
-    },
-    {
-      icon: Award,
-      title: "Lean Innovation",
-      desc: "We continually update our connectors and modular accessories catalog to keep up with European standards and lean manufacturing trends."
-    }
-  ];
-
-  const timelineSteps = [
-    {
-      year: "2018",
-      title: "Establishment in Pune",
-      desc: "SI Technology was incorporated in Dhayari, Pune. Started trading in basic T-slot profile structures and hardware connectors.",
-      bg: "bg-slate-950 border-slate-800/80 hover:border-slate-600",
-      glow: "hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]",
-      dotColor: "bg-slate-400",
-      textColor: "text-slate-300 border-slate-700",
-      accentBg: "bg-slate-900 text-slate-200"
-    },
-    {
-      year: "2020",
-      title: "Workstation Fabrication",
-      desc: "Launched customized workstation assembly lines. Set up an in-house cutting and tapping facility to supply pre-fabricated flatpacks.",
-      bg: "bg-slate-950 border-slate-800/80 hover:border-teal-500/80",
-      glow: "hover:shadow-[0_0_25px_rgba(20,184,166,0.45)]",
-      dotColor: "bg-teal-500",
-      textColor: "text-teal-300 border-teal-800",
-      accentBg: "bg-teal-950/50 text-teal-200"
-    },
-    {
-      year: "2022",
-      title: "Lean & Pipe Systems",
-      desc: "Introduced modular 28mm steel and ESD-conductive pipe and joint solutions, supporting Kaizen layout designs in warehouse logistics.",
-      bg: "bg-slate-950 border-slate-800/80 hover:border-blue-500/80",
-      glow: "hover:shadow-[0_0_25px_rgba(59,130,246,0.45)]",
-      dotColor: "bg-blue-500",
-      textColor: "text-blue-300 border-blue-800",
-      accentBg: "bg-blue-950/50 text-blue-200"
-    },
-    {
-      year: "2024",
-      title: "Perimeter Safety Fencing",
-      desc: "Supplied over 10,000 meters of ISO-compliant safety yellow wire mesh and polycarbonate machine guarding to automotive OEMs.",
-      bg: "bg-slate-950 border-slate-800/80 hover:border-amber-500/80",
-      glow: "hover:shadow-[0_0_25px_rgba(245,158,11,0.45)]",
-      dotColor: "bg-amber-500",
-      textColor: "text-amber-300 border-amber-800",
-      accentBg: "bg-amber-950/50 text-amber-200"
-    },
-    {
-      year: "2026",
-      title: "Digital Integration",
-      desc: "Now supporting 3D CAD modeling, custom design consultation, and on-site technician assembly across key industrial zones in India.",
-      bg: "bg-slate-950 border-slate-800/80 hover:border-orange-500/80",
-      glow: "hover:shadow-[0_0_25px_rgba(249,115,22,0.45)]",
-      dotColor: "bg-orange-500",
-      textColor: "text-orange-300 border-orange-800",
-      accentBg: "bg-orange-950/50 text-orange-200"
+      title: "Long-Term Partnership",
+      desc: "We believe that business success comes from long-term relationships built on quality, transparency, reliability and consistent service."
     }
   ];
 
@@ -135,278 +166,603 @@ export default function About() {
       </Helmet>
 
       <div className="w-full">
-        {/* ─── HERO SECTION WITH BACKGROUND IMAGE ─── */}
-        <section className="relative overflow-hidden swiss-border-b">
+        {/* ─── 1. TOP HERO BANNER SECTION (COMPANY PROFILE) ─── */}
+        <section className="relative overflow-hidden bg-black text-white pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 border-b border-neutral-800">
+          {/* Custom Background Image - High Visibility & Brightness */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/images/company_profile_hero_bg.png"
+              alt="SI Technology Modern Manufacturing Facility"
+              className="w-full h-full object-cover object-center opacity-85 filter brightness-105 contrast-105 scale-105"
+            />
+            {/* Lighter Gradient Overlays so Photo Details and Lights Pop Clearly */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/35 to-black/80 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-transparent to-black/80 pointer-events-none" />
+          </div>
 
-          {/* ── DESKTOP HERO (sm and above): background image with dark overlay + centered text ── */}
-          <div className="hidden sm:block relative" style={{ minHeight: "350px" }}>
-            {/* Background Image */}
-            <div className="absolute inset-0 z-0">
-              <img
-                src="/images/about_hero_building.jpg"
-                alt="SI Technology Engineering Headquarters Pune"
-                className="w-full h-full object-cover object-center opacity-80"
-              />
-              {/* Dark Balanced Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-950/85 via-primary-950/75 to-black/90" />
-              <div className="absolute inset-0 bg-grid-light opacity-5" />
-            </div>
+          {/* Grid Lines Pattern & Glowing Ambient White Lighting */}
+          <div className="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none z-1" />
+          <div className="absolute -top-24 left-1/4 w-96 h-96 bg-white/15 rounded-full blur-3xl pointer-events-none z-1" />
+          <div className="absolute -bottom-24 right-1/4 w-96 h-96 bg-slate-300/10 rounded-full blur-3xl pointer-events-none z-1" />
 
-            <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-32 pb-16">
-              {/* Breadcrumb */}
-              <nav className="flex items-center gap-2 text-xs sm:text-sm font-mono text-white/40 mb-6">
-                <Link to="/" className="hover:text-white/70 transition-colors">Home</Link>
-                <span>/</span>
-                <span className="text-accent-400 font-semibold">About Us</span>
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            {/* Top Breadcrumbs Row (Left-aligned) */}
+            <div className="flex items-center justify-start mb-3">
+              <nav className="flex items-center gap-2 text-xs sm:text-sm font-mono text-slate-200 tracking-wide drop-shadow-md">
+                <Link to="/" className="hover:text-white transition-colors font-medium">Home</Link>
+                <span className="text-slate-400">•</span>
+                <span className="text-white font-bold tracking-wider">Company Profile</span>
               </nav>
-              <div className="text-center max-w-2xl mx-auto">
-                <h1 className="text-2xl xs:text-3xl sm:text-5xl font-display font-black leading-[1.15] mb-4">
-                  <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="block text-white"
-                  >
-                    Our Story
-                  </motion.span>
-                  <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="block text-[#f97316] mt-1"
-                  >
-                    &amp; Vision.
-                  </motion.span>
-                </h1>
-                <p className="text-white/80 text-base sm:text-lg font-semibold leading-relaxed">
-                  Supplying Pune and India with precision aluminium framing systems, lean assembly components, and safety structures since 2018.
-                </p>
-              </div>
+            </div>
+
+            {/* Main Centered Banner Content (Bright White & High Contrast) */}
+            <div className="flex flex-col items-center justify-center text-center space-y-3 py-4">
+              <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-display font-black text-white uppercase tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,1)]">
+                Company Profile
+              </h1>
+
+              <p className="text-white font-semibold text-xs sm:text-base max-w-2xl tracking-normal leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,1)]">
+                Engineering Solutions &amp; Industrial Aluminium Profiles for Modern Manufacturing
+              </p>
+
+              {/* Glowing Bright White Accent Line */}
+              <div className="w-28 sm:w-40 h-1 bg-gradient-to-r from-transparent via-white to-transparent rounded-full mt-2 shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
             </div>
           </div>
+        </section>
 
-          {/* ── MOBILE HERO (below sm): product frame image with text integrated in middle white space ── */}
-          <div className="sm:hidden relative bg-white overflow-hidden swiss-border-b">
-            {/* Navbar spacer */}
-            <div className="h-[104px]" />
+        {/* ─── 2. OUR STORY SECTION (CLEAN WHITE BACKGROUND WITH LIGHT BLUE ACCENTS & 2-COLUMN DESIGN) ─── */}
+        <section className="relative overflow-hidden bg-white text-slate-900 border-b border-slate-200/80 py-14 sm:py-20">
+          {/* Subtle Light Blue Ambient Glow & Grid Pattern */}
+          <div className="absolute inset-0 bg-grid-light opacity-5 pointer-events-none" />
+          <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-100/60 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Mobile Hero Frame Container */}
-            <div className="relative w-full min-h-[480px] xs:min-h-[520px] flex flex-col justify-between px-6 py-8">
-              {/* Background Frame Image */}
-              <img
-                src="/images/about_hero_mobile.png"
-                alt="SI Technology Industrial Aluminium Profiles and Pipe Joint"
-                className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
-              />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-              {/* Integrated Text Box in middle white area */}
-              <div className="relative z-10 my-auto py-2 px-2 text-center">
-                {/* Breadcrumb */}
-                <nav className="flex items-center justify-center gap-2 text-xs font-mono text-slate-500 mb-3 font-semibold">
-                  <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link>
-                  <span>/</span>
-                  <span className="text-[#f97316] font-bold">About Us</span>
-                </nav>
+              {/* LEFT COLUMN: Text Content & Stat Cards (7 cols) */}
+              <div className="lg:col-span-7 space-y-6 flex flex-col items-start text-left">
+                {/* Subtitle Badge */}
+                <div className="flex items-center gap-2.5 text-xs sm:text-sm font-mono font-bold tracking-widest text-blue-600 uppercase bg-blue-50 border border-blue-200 px-3.5 py-1.5 rounded-full shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                  OUR STORY &amp; VISION
+                </div>
 
-                <h1 className="text-3xl xs:text-4xl font-display font-black leading-tight text-slate-900 mb-3 tracking-tight">
-                  <motion.span
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="block"
-                  >
-                    Our Story
-                  </motion.span>
-                  <motion.span
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.25 }}
-                    className="block text-[#f97316] mt-0.5"
-                  >
-                    &amp; Vision.
-                  </motion.span>
-                </h1>
+                {/* Main Headline */}
+                <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 tracking-tight leading-[1.15] text-left">
+                  Engineering Solutions <span className="text-blue-600">for Modern Manufacturing.</span>
+                </h2>
 
-                <p className="text-slate-700 text-xs xs:text-sm font-semibold leading-relaxed max-w-[290px] mx-auto">
-                  Supplying Pune and India with precision aluminium framing systems, lean assembly components, and safety structures since 2018.
+                {/* Paragraph Text */}
+                <p className="text-slate-600 text-xs sm:text-base leading-relaxed font-medium text-left">
+                  Established in 2018, S I Technology is a Pune-based industrial solutions leader specializing in Aluminium Profile Systems, Ergonomic Workstations, Pipe &amp; Joint Systems, Material Handling Conveyors, and custom structural engineering for high-productivity manufacturing lines.
                 </p>
+
+                {/* 4-Stat Highlight Cards (2x2 Grid) */}
+                <div className="grid grid-cols-2 gap-3.5 w-full pt-2">
+                  {/* Card 1 */}
+                  <div className="flex items-center gap-3 bg-white border border-slate-200/90 p-3.5 rounded-xl shadow-md hover:border-blue-300 hover:shadow-lg transition-all">
+                    <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center shrink-0 shadow-sm">
+                      <Calendar size={20} />
+                    </div>
+                    <div className="text-left">
+                      <span className="block text-[10px] sm:text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Established</span>
+                      <span className="block text-xs sm:text-sm font-bold text-slate-900 font-display">2018</span>
+                    </div>
+                  </div>
+
+                  {/* Card 2 */}
+                  <div className="flex items-center gap-3 bg-white border border-slate-200/90 p-3.5 rounded-xl shadow-md hover:border-blue-300 hover:shadow-lg transition-all">
+                    <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center shrink-0 shadow-sm">
+                      <Cog size={20} />
+                    </div>
+                    <div className="text-left">
+                      <span className="block text-[10px] sm:text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Solutions</span>
+                      <span className="block text-xs sm:text-sm font-bold text-slate-900 font-display">Application Driven</span>
+                    </div>
+                  </div>
+
+                  {/* Card 3 */}
+                  <div className="flex items-center gap-3 bg-white border border-slate-200/90 p-3.5 rounded-xl shadow-md hover:border-blue-300 hover:shadow-lg transition-all">
+                    <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center shrink-0 shadow-sm">
+                      <Handshake size={20} />
+                    </div>
+                    <div className="text-left">
+                      <span className="block text-[10px] sm:text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Customers</span>
+                      <span className="block text-xs sm:text-sm font-bold text-slate-900 font-display">Across India</span>
+                    </div>
+                  </div>
+
+                  {/* Card 4 */}
+                  <div className="flex items-center gap-3 bg-white border border-slate-200/90 p-3.5 rounded-xl shadow-md hover:border-blue-300 hover:shadow-lg transition-all">
+                    <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center shrink-0 shadow-sm">
+                      <ShieldCheck size={20} />
+                    </div>
+                    <div className="text-left">
+                      <span className="block text-[10px] sm:text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Our Promise</span>
+                      <span className="block text-xs sm:text-sm font-bold text-slate-900 font-display">Quality &amp; Support</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* Padding spacer to push text away from bottom pipe joint */}
-              <div className="h-12 relative z-10 pointer-events-none" />
+              {/* RIGHT COLUMN: Dedicated Photo Container in Unique Shape with Dark Blue & Black Shadow (5 cols) */}
+              <div className="lg:col-span-5 relative flex items-center justify-center pt-4 lg:pt-0">
+                {/* Decorative Soft Dark-Blue Ambient Glow Behind Image */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/15 via-sky-800/10 to-transparent rounded-[3rem] blur-2xl transform scale-105 pointer-events-none" />
+
+                {/* Unique Shape Photo Frame Container with Dark Blue & Black Shadow */}
+                <div className="relative z-10 w-full max-w-md lg:max-w-none overflow-hidden rounded-[2.5rem] rounded-tr-[5rem] rounded-bl-[5rem] border-2 border-blue-200 bg-white shadow-[0_25px_50px_-10px_rgba(3,7,18,0.35),0_10px_30px_rgba(10,30,74,0.25)] group transition-all duration-500 hover:border-blue-400 hover:shadow-[0_30px_60px_-10px_rgba(3,7,18,0.45),0_15px_35px_rgba(10,30,74,0.35)]">
+                  {/* High-Tech Workstation Photo */}
+                  <img
+                    src="/images/aboutphoto.png"
+                    alt="SI Technology Industrial Workstation Assembly"
+                    className="w-full h-[360px] sm:h-[440px] lg:h-[480px] object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-100 contrast-105"
+                  />
+                </div>
+              </div>
+
             </div>
           </div>
-
         </section>
 
 
-        {/* ─── ABOUT S I TECHNOLOGY SECTION (2-COLUMN REFERENCE DESIGN WITH CONTAINER CARD) ─── */}
-        <section className="mt-0 py-2 sm:py-3 relative overflow-hidden bg-slate-50 border-y border-dark-200/60 z-10">
-          {/* Steel-blue gradient container background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-400/30 via-slate-300/20 to-blue-200/25 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/40 pointer-events-none" />
-          <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none" />
 
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            {/* Container card */}
-            <div className="bg-[rgb(158,175,181)] backdrop-blur-sm rounded-3xl border border-slate-200/80 shadow-xl p-5 sm:p-6 lg:p-8 overflow-hidden relative">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-[80px] pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-slate-100/40 rounded-full blur-[60px] pointer-events-none" />
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
 
-                {/* Left Column (6 cols): Headline, Paragraphs, Small Checklist & CTA */}
-                <div className="lg:col-span-6 space-y-3">
-                  {/* Accent Subtitle Badge */}
-                  <div className="flex items-center gap-2.5 text-xs font-mono font-bold tracking-widest text-black uppercase">
-                    <span className="w-8 h-0.5 bg-black rounded-full" />
-                    WHO WE ARE
-                  </div>
 
-                  <h2 className="text-xl xs:text-2xl sm:text-4xl lg:text-[2.85rem] font-display font-black text-black tracking-tight leading-[1.15]">
-                    Industrial <br />
-                    Aluminium Profiles <br />
-                    &amp; Automation.
-                  </h2>
 
-                  {/* Text Paragraphs */}
-                  <div className="space-y-3.5 text-dark-700 text-sm sm:text-base leading-relaxed font-semibold">
-                    <p>
-                      Established in 2018, S I Technology has grown into a trusted name in industrial aluminium profile systems and automation solutions across India.
-                    </p>
-                    <p>
-                      With a strong focus on engineering excellence and innovation, our experienced team manufactures, supplies, and installs modular structures that improve shopfloor productivity, optimize workspace utilization, and support lean manufacturing practices.
-                    </p>
-                  </div>
 
-                  {/* Small Bullet Points Checklist with Interactive Hover Effects */}
-                  <div className="space-y-2.5 pt-1">
-                    {[
-                      "Market Leadership in Industrial Aluminium Profiles",
-                      "Precision Alloy 6063 T6 Structural Extrusions",
-                      "Partner to 500+ Manufacturing & Automotive Plants",
-                      "End-to-End Turnkey CAD & Installation Support"
-                    ].map((point, idx) => (
-                      <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: idx * 0.1 }}
-                        whileHover={{ x: 6 }}
-                        className="flex items-center gap-3.5 p-2.5 -mx-2.5 rounded-xl border border-transparent hover:border-accent-500/30 hover:bg-accent-500/[0.06] hover:shadow-sm transition-all duration-300 cursor-pointer group/item"
-                      >
-                        <div className="w-7 h-7 rounded-full bg-accent-500/15 text-accent-600 group-hover/item:bg-accent-500 group-hover/item:text-white group-hover/item:scale-110 flex items-center justify-center flex-shrink-0 transition-all duration-300 shadow-sm">
-                          <CheckCircle2 size={15} className="stroke-[2.5]" />
-                        </div>
-                        <span className="text-sm sm:text-base font-bold text-primary-950 group-hover/item:text-accent-700 transition-colors duration-300">
-                          {point}
-                        </span>
-                      </motion.div>
-                    ))}
-                  </div>
 
-                  {/* Action Button with Dynamic Hover Effect */}
-                  <div className="pt-4">
-                    <Link
-                      to="/contact"
-                      className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-primary-950 bg-primary-950 text-white hover:bg-accent-600 hover:border-accent-600 text-xs font-bold uppercase tracking-wider shadow-md hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group/btn"
-                    >
-                      CONTACT US TODAY
-                      <ArrowRight size={15} className="group-hover/btn:translate-x-1.5 transition-transform duration-300" />
-                    </Link>
-                  </div>
+
+        {/* ─── OUR ENGINEERING APPROACH SECTION (WITH DARK BLUE & LIGHT BLUE MIXED BACKGROUND) ─── */}
+        <section className="py-14 sm:py-20 bg-gradient-to-br from-[#06132b] via-[#0d285c] via-[#081a3d] to-[#040e24] text-white border-b border-blue-900/50 relative overflow-hidden">
+          {/* Ambient Light Blue & Cyan Glow Spheres */}
+          <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
+          <div className="absolute top-1/3 left-1/4 w-[450px] h-[450px] bg-sky-400/20 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Centered Section Header */}
+            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-3">
+              <span className="inline-flex items-center gap-2 bg-blue-950/80 border border-blue-700/60 rounded-full px-4 py-1.5 text-xs text-sky-300 font-mono font-bold uppercase tracking-wider shadow-md backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+                HOW WE WORK
+              </span>
+              <h2 className="text-2xl xs:text-3xl sm:text-5xl font-display font-black text-white tracking-tight leading-[1.15] drop-shadow-md">
+                Our Engineering <span className="text-sky-400">Approach</span>
+              </h2>
+              <p className="text-sky-100/90 text-sm sm:text-base font-semibold max-w-2xl mx-auto leading-relaxed">
+                At S I Technology, we believe that supplying a product is only one part of an industrial solution.
+              </p>
+            </div>
+
+            {/* ─── HORIZONTAL TREE TIMELINE HEADER (Nodes 01 -> 02 -> 03 -> 04 -> 05) ─── */}
+            <div className="max-w-4xl mx-auto mb-8 sm:mb-12 px-2">
+              <div className="relative flex items-center justify-between">
+                {/* Horizontal Tree Stem Line */}
+                <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1.5 bg-blue-950/90 border border-blue-800/60 rounded-full -z-0 overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 transition-all duration-500 rounded-full shadow-[0_0_15px_rgba(56,189,248,0.8)]"
+                    style={{ width: `${(activeProcessStep / (processSteps.length - 1)) * 100}%` }}
+                  />
                 </div>
 
-                {/* Right Column (6 cols): Large Rounded Image Showcase + Bottom Floating Card */}
-                <div className="lg:col-span-6 relative pb-8 lg:pb-0">
+                {/* Step Tree Nodes */}
+                {processSteps.map((step, idx) => {
+                  const isActive = idx === activeProcessStep;
+                  const isPassed = idx <= activeProcessStep;
+
+                  return (
+                    <button
+                      key={step.num}
+                      onClick={() => {
+                        setActiveProcessStep(idx);
+                        setIsProcessAutoPlaying(false);
+                      }}
+                      className="relative z-10 flex flex-col items-center group focus:outline-none"
+                    >
+                      {/* Circle Node */}
+                      <div
+                        className={`w-11 h-11 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-mono font-black text-xs sm:text-sm transition-all duration-300 shadow-xl ${
+                          isActive
+                            ? "bg-white text-blue-600 ring-4 ring-sky-400/80 scale-110 shadow-[0_0_30px_rgba(255,255,255,0.9)]"
+                            : isPassed
+                            ? "bg-gradient-to-tr from-blue-600 to-sky-400 text-white border-2 border-white"
+                            : "bg-slate-950/90 text-slate-400 border-2 border-slate-800 hover:border-white hover:text-white"
+                        }`}
+                      >
+                        {step.num}
+                      </div>
+
+                      {/* Node Label */}
+                      <span
+                        className={`hidden sm:block mt-2 text-xs font-mono uppercase tracking-wider transition-colors ${
+                          isActive ? "text-white font-black drop-shadow-sm" : "text-slate-400 group-hover:text-white"
+                        }`}
+                      >
+                        {step.title}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* ─── AUTO-MOVING HORIZONTAL SLIDER CARD (DARK BLUE GLASSMORPHISM THEME) ─── */}
+            <div
+              className="max-w-4xl mx-auto"
+              onMouseEnter={() => setIsProcessAutoPlaying(false)}
+              onMouseLeave={() => setIsProcessAutoPlaying(true)}
+            >
+              <div className="relative h-[480px] sm:h-[440px] md:h-[420px]">
+                <AnimatePresence mode="wait">
                   <motion.div
+                    key={activeProcessStep}
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -40 }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    className="bg-slate-950/90 border border-slate-800 shadow-[0_25px_60px_rgba(3,7,18,0.7)] backdrop-blur-xl rounded-3xl overflow-hidden grid md:grid-cols-12 items-stretch h-[480px] sm:h-[440px] md:h-[420px]"
+                  >
+                    {/* Left Column: Feature Photo */}
+                    <div className="md:col-span-5 relative h-48 md:h-full bg-slate-950 overflow-hidden shrink-0">
+                      <img
+                        src={processSteps[activeProcessStep].img}
+                        alt={`SI Technology - Step ${processSteps[activeProcessStep].num} ${processSteps[activeProcessStep].title}`}
+                        className="w-full h-full object-cover filter brightness-95 contrast-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
+
+                      {/* Floating Step Pill */}
+                      <div className="absolute top-4 left-4 bg-white text-slate-900 font-mono font-black text-xs px-3 py-1.5 rounded-full shadow-lg tracking-wider border border-slate-200">
+                        STEP {processSteps[activeProcessStep].num}
+                      </div>
+
+                      {/* Category Tag */}
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-sky-300 bg-blue-950/90 backdrop-blur-md px-3 py-1.5 rounded-md border border-blue-700/60">
+                          {processSteps[activeProcessStep].tag}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Right Column: Step Description & Deliverables */}
+                    <div className="md:col-span-7 p-5 sm:p-7 lg:p-8 flex flex-col justify-between h-full space-y-4 text-left overflow-hidden">
+                      <div className="space-y-3 overflow-y-auto pr-1">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-xl bg-blue-900/60 text-sky-300 font-mono font-bold flex items-center justify-center shrink-0 border border-blue-700/60">
+                            {processSteps[activeProcessStep].num}
+                          </div>
+                          <div>
+                            <span className="block text-[10px] sm:text-xs font-mono font-bold text-sky-400 uppercase tracking-widest">
+                              {processSteps[activeProcessStep].subtitle}
+                            </span>
+                            <h3 className="text-2xl sm:text-3xl font-display font-black text-white tracking-tight">
+                              {processSteps[activeProcessStep].title}
+                            </h3>
+                          </div>
+                        </div>
+
+                        <p className="text-sky-100/90 text-xs sm:text-sm leading-relaxed font-medium">
+                          {processSteps[activeProcessStep].desc}
+                        </p>
+
+                        {/* Deliverables Checklist */}
+                        <div className="pt-1 space-y-1.5">
+                          <span className="block text-[10px] sm:text-[11px] font-mono font-bold text-sky-400 uppercase tracking-wider">
+                            Key Deliverables:
+                          </span>
+                          <ul className="space-y-1">
+                            {processSteps[activeProcessStep].highlights.map((item, i) => (
+                              <li key={i} className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-200">
+                                <CheckCircle size={15} className="text-sky-400 shrink-0" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* Bottom Controls Bar inside Card */}
+                      <div className="pt-3 border-t border-blue-900/60 flex items-center justify-between shrink-0">
+                        <div className="flex items-center gap-2">
+                          {processSteps.map((_, i) => (
+                            <button
+                              key={i}
+                              onClick={() => {
+                                setActiveProcessStep(i);
+                                setIsProcessAutoPlaying(false);
+                              }}
+                              className={`h-2.5 rounded-full transition-all duration-300 ${
+                                i === activeProcessStep ? "w-8 bg-sky-400 shadow-[0_0_10px_rgba(56,189,248,0.8)]" : "w-2.5 bg-blue-900/80 hover:bg-blue-800"
+                              }`}
+                            />
+                          ))}
+                        </div>
+
+                        {/* Prev / Next Arrow Controls */}
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => {
+                              setActiveProcessStep((prev) => (prev - 1 + processSteps.length) % processSteps.length);
+                              setIsProcessAutoPlaying(false);
+                            }}
+                            className="w-9 h-9 rounded-full bg-blue-950 hover:bg-sky-400 hover:text-slate-950 text-sky-300 border border-blue-800/80 flex items-center justify-center transition-colors shadow-sm"
+                            aria-label="Previous step"
+                          >
+                            <ChevronLeft size={18} />
+                          </button>
+                          <button
+                            onClick={() => {
+                              setActiveProcessStep((prev) => (prev + 1) % processSteps.length);
+                              setIsProcessAutoPlaying(false);
+                            }}
+                            className="w-9 h-9 rounded-full bg-blue-950 hover:bg-sky-400 hover:text-slate-950 text-sky-300 border border-blue-800/80 flex items-center justify-center transition-colors shadow-sm"
+                            aria-label="Next step"
+                          >
+                            <ChevronRight size={18} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* ─── OUR COMMITMENT SECTION (WHITE SECTION WITH SLEEK DARK CARDS) ─── */}
+        <section className="py-12 sm:py-16 bg-white text-slate-900 relative overflow-hidden border-y border-slate-200/80 z-10">
+          {/* Subtle Ambient Grid & Decorative Light Glows */}
+          <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none" />
+          <div className="absolute top-0 right-1/3 w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-[140px] pointer-events-none" />
+          <div className="absolute bottom-0 left-1/3 w-[450px] h-[450px] bg-emerald-100/40 rounded-full blur-[130px] pointer-events-none" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Header Block */}
+            <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200/80 rounded-full px-4 py-1.5 text-xs text-blue-800 font-mono font-bold uppercase tracking-widest shadow-sm"
+              >
+                <Sparkles size={14} className="text-blue-600 animate-pulse" />
+                <span>OUR COMMITMENT</span>
+              </motion.div>
+
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 tracking-tight leading-[1.15]"
+              >
+                More Than Products.{" "}
+                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-500 bg-clip-text text-transparent">
+                  We Deliver Complete Solutions.
+                </span>
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-slate-600 text-sm sm:text-base font-normal leading-relaxed max-w-2xl mx-auto"
+              >
+                At S I Technology, an industrial supplier should do more than supply off-the-shelf components. We deeply analyze your engineering challenges to engineer turnkey, reliable, long-term operational success.
+              </motion.p>
+            </div>
+
+            {/* Main Interactive Card Grid (4 Dark Cards) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+              {[
+                {
+                  title: "Productivity",
+                  tagline: "Ergonomic Workflow",
+                  badge: "+40% Output",
+                  icon: TrendingUp,
+                  desc: "Designing tailored structural layouts that minimize operator fatigue and accelerate assembly cycles.",
+                  gradient: "from-blue-500 to-cyan-500",
+                  bgGlow: "hover:border-blue-500/50 hover:shadow-blue-500/10",
+                  badgeBg: "bg-blue-950/80 text-blue-400 border-blue-800/80"
+                },
+                {
+                  title: "Organization",
+                  tagline: "Lean 5S Standards",
+                  badge: "Modular Layout",
+                  icon: Layers,
+                  desc: "Structured profile systems and accessories that optimize shopfloor space and component access.",
+                  gradient: "from-indigo-500 to-blue-600",
+                  bgGlow: "hover:border-indigo-500/50 hover:shadow-indigo-500/10",
+                  badgeBg: "bg-indigo-950/80 text-indigo-400 border-indigo-800/80"
+                },
+                {
+                  title: "Safety",
+                  tagline: "Structural Integrity",
+                  badge: "Certified Protection",
+                  icon: ShieldCheck,
+                  desc: "Precision engineering and robust aluminum extrusions tested to withstand demanding industrial loads.",
+                  gradient: "from-emerald-500 to-teal-600",
+                  bgGlow: "hover:border-emerald-500/50 hover:shadow-emerald-500/10",
+                  badgeBg: "bg-emerald-950/80 text-emerald-400 border-emerald-800/80"
+                },
+                {
+                  title: "Operational Efficiency",
+                  tagline: "Rapid Adaptability",
+                  badge: "Zero Downtime",
+                  icon: Cog,
+                  desc: "Modular interconnectivity allowing fast system expansion and seamless re-configurations as production grows.",
+                  gradient: "from-teal-500 to-cyan-600",
+                  bgGlow: "hover:border-teal-500/50 hover:shadow-teal-500/10",
+                  badgeBg: "bg-teal-950/80 text-teal-400 border-teal-800/80"
+                }
+              ].map((card, idx) => {
+                const IconComp = card.icon;
+                return (
+                  <motion.div
+                    key={card.title}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                    className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-dark-200/80 hover:border-accent-500/50 hover:shadow-[0_25px_60px_rgba(249,115,22,0.18)] aspect-[16/10] sm:aspect-[16/9] bg-dark-100 group/img cursor-pointer transition-all duration-500"
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    whileHover={{ y: -8 }}
+                    className={`group relative bg-gradient-to-b from-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-7 border border-slate-800/90 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden ${card.bgGlow}`}
                   >
-                    <img
-                      src="/images/about_who_we_are.png"
-                      alt="S I TECHNOLOGY Industrial Aluminium Profile Hub"
-                      className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
-                    />
-                    {/* Subtle Hover Shine Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-accent-500/15 via-transparent to-white/10 opacity-0 group-hover/img:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  </motion.div>
+                    {/* Corner Subtle Gradient Accent Light */}
+                    <div className={`absolute top-0 right-0 w-28 h-28 bg-gradient-to-br ${card.gradient} opacity-[0.12] rounded-bl-full pointer-events-none group-hover:opacity-[0.25] transition-opacity duration-300`} />
 
-                  {/* Floating Stat Card at Bottom-Left with Interactive Lift */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    whileHover={{ y: -6, scale: 1.03 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute -bottom-6 left-6 sm:left-8 bg-white/95 backdrop-blur-md border border-dark-200/80 hover:border-accent-500/60 rounded-2xl p-4 sm:p-5 shadow-2xl hover:shadow-[0_15px_40px_rgba(249,115,22,0.2)] flex items-center gap-4 z-20 max-w-[260px] sm:max-w-[290px] transition-all duration-300 cursor-pointer group/stat"
-                  >
-                    <div className="w-11 h-11 rounded-full bg-accent-500/15 text-accent-600 group-hover/stat:bg-accent-500 group-hover/stat:text-white group-hover/stat:rotate-12 transition-all duration-300 flex items-center justify-center flex-shrink-0 shadow-sm">
-                      <Sparkles size={20} />
-                    </div>
                     <div>
-                      <p className="text-[10px] font-mono font-bold tracking-widest uppercase text-dark-500">
-                        ESTABLISHED IN 2018
-                      </p>
-                      <p className="text-sm sm:text-base font-display font-black text-primary-950 group-hover/stat:text-accent-600 transition-colors duration-300">
-                        6+ Years of Excellence
+                      {/* Top Bar: Icon + Pill Badge */}
+                      <div className="flex items-center justify-between mb-5">
+                        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform duration-300`}>
+                          <IconComp size={22} />
+                        </div>
+                        <span className={`text-[11px] font-mono font-bold px-2.5 py-1 rounded-full border ${card.badgeBg}`}>
+                          {card.badge}
+                        </span>
+                      </div>
+
+                      {/* Title & Tagline */}
+                      <span className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wider mb-1">
+                        {card.tagline}
+                      </span>
+                      <h3 className="text-xl font-display font-bold text-white tracking-tight mb-3">
+                        {card.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-slate-300 text-sm leading-relaxed mb-6 font-normal">
+                        {card.desc}
                       </p>
                     </div>
-                  </motion.div>
-                </div>
 
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── CORE VALUES ANIMATED GRID ─── */}
-        <section className="mt-6 sm:mt-8 py-12 sm:py-16 bg-dark-50 swiss-border-b relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-              <span className="inline-flex items-center gap-2 bg-primary-100/60 border border-primary-200 rounded-full px-4 py-1.5 text-xs text-primary-900 font-bold uppercase tracking-wider">
-                Operating Philosophy
-              </span>
-              <h1 className="text-2xl xs:text-3xl sm:text-5xl font-display font-black text-black tracking-tight leading-[1.1]">
-                Why Customers Choose S I Technology
-              </h1>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {coreValues.map((val, i) => {
-                const Icon = val.icon;
-                return (
-                  <motion.div
-                    key={val.title}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.15 }}
-                    transition={{ duration: 0.75, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                    whileHover={{
-                      y: -10,
-                      scale: 1.03,
-                      boxShadow: "0 20px 40px rgba(184, 132, 180, 0.35)"
-                    }}
-                    className="bg-[#b884b4] border border-white/10 rounded-3xl p-7 shadow-sm flex flex-col justify-between cursor-pointer"
-                  >
-                    <div className="space-y-4">
-                      <div className="w-12 h-12 bg-white text-[#b884b4] rounded-2xl flex items-center justify-center shadow-md shadow-black/10">
-                        <Icon size={24} />
-                      </div>
-                      <h3 className="text-xl font-bold font-display text-white">
-                        {val.title}
-                      </h3>
-                      <p className="text-sm text-white/90 leading-relaxed font-medium">
-                        {val.desc}
-                      </p>
+                    {/* Bottom Indicator */}
+                    <div className="pt-4 border-t border-slate-800/80 flex items-center gap-2 text-xs font-semibold text-slate-400 group-hover:text-blue-400 transition-colors">
+                      <CheckCircle2 size={15} className="text-emerald-400" />
+                      <span>Guaranteed Outcome</span>
                     </div>
                   </motion.div>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── OPERATING PHILOSOPHY (WHITE & DARK MIX ROTATING CIRCULAR DIAL) ─── */}
+        <section className="py-8 sm:py-12 bg-gradient-to-b from-slate-950 via-[#0b132b] to-black text-white relative overflow-hidden border-y border-slate-800/80">
+          {/* Ambient Lighting & Grid Overlay */}
+          <div className="absolute inset-0 bg-grid-light opacity-[0.03] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
+          <div className="absolute top-0 right-1/4 w-[350px] h-[350px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Section Header */}
+            <div className="text-center max-w-3xl mx-auto mb-3 sm:mb-4 space-y-1.5">
+              <span className="inline-flex items-center gap-2 bg-blue-950/80 border border-blue-800/80 rounded-full px-3.5 py-1 text-xs text-blue-400 font-mono font-bold uppercase tracking-wider shadow-sm">
+                <Sparkles size={13} className="text-blue-400 animate-pulse" />
+                OPERATING PHILOSOPHY
+              </span>
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-display font-black text-white tracking-tight leading-[1.12]">
+                Why Choose S I Technology?
+              </h2>
+              <p className="text-slate-300 text-xs sm:text-sm font-normal max-w-xl mx-auto leading-relaxed">
+                Six foundational pillars driving our commitment to engineering precision, product reliability, and client success.
+              </p>
+            </div>
+
+            {/* Circular Dial Container */}
+            <div
+              className="relative w-full max-w-[320px] xs:max-w-[360px] sm:max-w-[480px] lg:max-w-[510px] aspect-square mx-auto flex items-center justify-center"
+              onMouseEnter={() => setIsPhilosophyAutoPlaying(false)}
+              onMouseLeave={() => setIsPhilosophyAutoPlaying(true)}
+            >
+              {/* Thin Track Ring Line */}
+              <div className="absolute inset-5 sm:inset-9 lg:inset-10 rounded-full border-2 border-slate-700/80 shadow-2xl" />
+
+              {/* 6 Circular Node Buttons Positioned Along Perimeter */}
+              {coreValues.map((val, idx) => {
+                const IconComp = val.icon;
+                const isActive = activePhilosophy === idx;
+                const totalNodes = coreValues.length;
+                const angleDeg = (idx * 360) / totalNodes - 90;
+                const angleRad = (angleDeg * Math.PI) / 180;
+
+                const radiusPct = 41;
+                const leftPct = 50 + radiusPct * Math.cos(angleRad);
+                const topPct = 50 + radiusPct * Math.sin(angleRad);
+
+                return (
+                  <motion.button
+                    key={val.title}
+                    type="button"
+                    onClick={() => {
+                      setActivePhilosophy(idx);
+                      setIsPhilosophyAutoPlaying(false);
+                    }}
+                    style={{ left: `${leftPct}%`, top: `${topPct}%` }}
+                    whileHover={{ scale: isActive ? 1.25 : 1.15 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`absolute -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-out z-20 flex items-center justify-center rounded-full ${
+                      isActive
+                        ? "w-14 h-14 sm:w-20 sm:h-20 bg-gradient-to-tr from-blue-600 via-blue-500 to-sky-400 text-white shadow-2xl shadow-blue-500/50 border-4 border-white scale-125"
+                        : "w-11 h-11 sm:w-16 sm:h-16 bg-white border border-slate-200 shadow-xl text-blue-600 hover:border-blue-400 hover:scale-110"
+                    }`}
+                  >
+                    <IconComp className={`${isActive ? "w-6 h-6 sm:w-8 sm:h-8" : "w-5 h-5 sm:w-7 sm:h-7"} transition-transform duration-300`} />
+                  </motion.button>
+                );
+              })}
+
+              {/* Center Info Content Box (Elevated Larger Crisp White Disc) */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-3 sm:p-6 z-10 pointer-events-none">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activePhilosophy}
+                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: -10 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    className="w-[220px] h-[220px] xs:w-[250px] xs:h-[250px] sm:w-[330px] sm:h-[330px] lg:w-[350px] lg:h-[350px] rounded-full bg-white text-slate-900 border-4 border-slate-100 shadow-[0_25px_65px_rgba(0,0,0,0.7)] p-4 sm:p-9 flex flex-col items-center justify-center space-y-2 sm:space-y-3 pointer-events-auto shrink-0"
+                  >
+                    <span className="inline-block text-[10px] sm:text-xs font-mono font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                      Pillar 0{activePhilosophy + 1}
+                    </span>
+
+                    <h3 className="text-base sm:text-2xl lg:text-3xl font-display font-black text-slate-900 tracking-tight leading-tight">
+                      {coreValues[activePhilosophy].title}
+                    </h3>
+
+                    <p className="text-slate-600 text-xs sm:text-sm leading-normal sm:leading-relaxed font-medium">
+                      {coreValues[activePhilosophy].desc}
+                    </p>
+
+                    {/* Progress Indicator Dots */}
+                    <div className="flex items-center justify-center gap-1.5 pt-1 sm:pt-2">
+                      {coreValues.map((_, i) => (
+                        <button
+                          key={i}
+                          type="button"
+                          onClick={() => {
+                            setActivePhilosophy(i);
+                            setIsPhilosophyAutoPlaying(false);
+                          }}
+                          className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 ${
+                            activePhilosophy === i ? "w-5 sm:w-6 bg-blue-600" : "w-1.5 sm:w-2 bg-slate-300 hover:bg-slate-400"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </div>
           </div>
         </section>
@@ -552,48 +908,156 @@ export default function About() {
           </div>
         </section>
 
-        {/* ─── ANIMATED TIMELINE SECTION ─── */}
-        <section className="py-12 sm:py-16 bg-white swiss-border-b">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-              <span className="inline-flex items-center gap-2 bg-accent-50 border border-accent-200 rounded-full px-4 py-1.5 text-xs text-accent-700 font-bold uppercase tracking-wider">
-                Growth Journey
+        {/* ─── OUR VISION & LEADERSHIP SECTION (RESTORED SPEECH BUBBLE DESIGN WITH BLUE ACCENTS) ─── */}
+        <section className="py-10 sm:py-14 bg-slate-50 border-b border-slate-200/80 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8 sm:space-y-10">
+            
+            {/* Centered Section Header */}
+            <div className="text-center max-w-3xl mx-auto space-y-2">
+              <span className="inline-flex items-center gap-2 bg-slate-900 text-white rounded-full px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
+                <UserCheck size={14} className="text-blue-400" />
+                OUR VISION &amp; LEADERSHIP
               </span>
-              <h1 className="text-2xl xs:text-3xl sm:text-5xl font-display font-black text-black tracking-tight leading-[1.1]">
-                Our Milestones Since 2018
-              </h1>
+              <h2 className="text-2xl xs:text-3xl sm:text-5xl font-display font-black text-slate-900 tracking-tight leading-[1.12]">
+                Growing With <span className="text-blue-600">Our Customers.</span>
+              </h2>
+              <p className="text-slate-600 text-xs sm:text-base font-medium max-w-2xl mx-auto leading-relaxed">
+                Since 2018, S I Technology has continuously expanded its engineering capabilities to deliver turnkey, high-performance manufacturing solutions across India.
+              </p>
             </div>
 
-            <div className="space-y-8 relative before:absolute before:inset-0 before:left-6 sm:before:left-1/2 before:-translate-x-1/2 before:w-0.5 before:bg-dark-200">
-              {timelineSteps.map((step, idx) => (
-                <motion.div
-                  key={step.year}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className={`relative flex items-center ${idx % 2 === 0 ? "sm:flex-row-reverse" : "sm:flex-row"}`}
-                >
-                  <div className="w-full sm:w-1/2 pl-14 sm:pl-8 sm:pr-8">
-                    <div className={`border rounded-2xl p-6 sm:p-7 shadow-sm transition-all duration-300 transform hover:-translate-y-1.5 cursor-pointer ${step.bg} ${step.glow}`}>
-                      <span className={`inline-block text-[11px] font-mono font-black uppercase tracking-widest px-3 py-1 rounded-full border border-current ${step.textColor} bg-slate-900`}>
-                        {step.year}
-                      </span>
-                      <h3 className="text-lg sm:text-xl font-black text-white mt-3 font-display">
-                        {step.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-slate-300 mt-2.5 leading-relaxed font-medium">
-                        {step.desc}
-                      </p>
+            {/* 2-Column Speech Bubble Cards */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch pt-4">
+              
+              {/* Card 1: Founder / Leadership Statement */}
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="lg:col-span-6 relative pt-6 pr-2 sm:pr-4"
+              >
+                {/* Slanted angled backdrop shape */}
+                <div className="absolute top-0 left-0 w-3/4 h-1/2 bg-slate-900 rounded-[2.5rem] -rotate-2 -z-0 opacity-95 shadow-lg" />
+
+                {/* Main Speech Card Outer Wrapper with thick border */}
+                <div className="relative z-10 bg-white border-[5px] sm:border-[6px] border-slate-900 rounded-[2.2rem] sm:rounded-[2.5rem] p-6 sm:p-8 shadow-2xl flex flex-col justify-between min-h-[310px]">
+                  
+                  {/* Top Right Speech Avatar Bubble Icon */}
+                  <div className="absolute -top-7 right-6 sm:right-8 flex flex-col items-center">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-slate-900 text-white border-4 border-white flex items-center justify-center shadow-xl">
+                      <User size={28} className="text-white" />
                     </div>
+                    <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-slate-900 -mt-0.5" />
                   </div>
 
-                  <div className={`absolute left-6 sm:left-1/2 -translate-x-1/2 w-5 h-5 rounded-full border-4 border-white shadow-md z-10 transition-all duration-300 hover:scale-125 ${step.dotColor}`} />
-                </motion.div>
-              ))}
+                  <div>
+                    {/* Header: Founder Info */}
+                    <div className="mb-4 pr-16">
+                      <h3 className="text-xl sm:text-2xl font-black text-slate-900 font-display tracking-tight">
+                        Mr. Sachin Indulkar
+                      </h3>
+                      <p className="text-xs font-mono text-blue-600 font-bold uppercase tracking-wider mt-0.5">
+                        Founder &amp; Managing Director
+                      </p>
+                    </div>
+
+                    {/* Rating Stars & Quote Line Divider */}
+                    <div className="flex items-center gap-3 my-4">
+                      <div className="bg-slate-100 px-3.5 py-1 rounded-full border border-slate-200 flex items-center gap-1 shrink-0">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className="text-amber-500 text-xs font-bold">★</span>
+                        ))}
+                      </div>
+                      <div className="flex-1 h-[2px] bg-slate-200" />
+                      <span className="text-3xl text-slate-300 font-serif font-black leading-none shrink-0">“</span>
+                    </div>
+
+                    {/* Quote Content */}
+                    <blockquote className="text-xs sm:text-sm font-medium text-slate-800 leading-relaxed">
+                      "Under the visionary leadership of <strong className="text-slate-900 font-bold underline decoration-slate-300 underline-offset-4">Mr. Sachin Indulkar</strong>, S I Technology continues to build an engineering organization driven by technical precision, unyielding quality, and long-term customer partnerships."
+                    </blockquote>
+                  </div>
+
+                  {/* Card Footer */}
+                  <div className="pt-4 mt-5 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-bold text-slate-500">
+                    <span className="bg-blue-600 text-white px-3 py-1 rounded-full uppercase tracking-wider text-[11px]">
+                      Leadership Statement
+                    </span>
+                    <span>EST. 2018</span>
+                  </div>
+                </div>
+
+                {/* Bottom Speech Bubble Pointer Tail */}
+                <div className="relative z-10 -mt-2 ml-10 sm:ml-14">
+                  <div className="w-0 h-0 border-t-[22px] border-t-slate-900 border-r-[24px] border-r-transparent" />
+                </div>
+              </motion.div>
+
+              {/* Card 2: Core Philosophy Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="lg:col-span-6 relative pt-6 pr-2 sm:pr-4"
+              >
+                <div className="absolute top-0 left-0 w-3/4 h-1/2 bg-slate-900 rounded-[2.5rem] -rotate-2 -z-0 opacity-95 shadow-lg" />
+
+                <div className="relative z-10 bg-white border-[5px] sm:border-[6px] border-slate-900 rounded-[2.2rem] sm:rounded-[2.5rem] p-6 sm:p-8 shadow-2xl flex flex-col justify-between min-h-[310px]">
+                  
+                  <div className="absolute -top-7 right-6 sm:right-8 flex flex-col items-center">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-slate-900 text-white border-4 border-white flex items-center justify-center shadow-xl">
+                      <Target size={26} className="text-white" />
+                    </div>
+                    <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-slate-900 -mt-0.5" />
+                  </div>
+
+                  <div>
+                    <div className="mb-4 pr-16">
+                      <h3 className="text-xl sm:text-2xl font-black text-slate-900 font-display tracking-tight">
+                        Our Core Philosophy
+                      </h3>
+                      <p className="text-xs font-mono text-blue-600 font-bold uppercase tracking-wider mt-0.5">
+                        Customer &amp; Quality First
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-3 my-4">
+                      <div className="bg-slate-100 px-3.5 py-1 rounded-full border border-slate-200 flex items-center gap-1 shrink-0">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className="text-amber-500 text-xs font-bold">★</span>
+                        ))}
+                      </div>
+                      <div className="flex-1 h-[2px] bg-slate-200" />
+                      <span className="text-3xl text-slate-300 font-serif font-black leading-none shrink-0">“</span>
+                    </div>
+
+                    <blockquote className="text-xs sm:text-sm font-medium text-slate-800 leading-relaxed italic">
+                      "Our goal is never simply to complete a single sale — it is to become a trusted, indispensable engineering partner for every manufacturing facility we empower across India."
+                    </blockquote>
+                  </div>
+
+                  <div className="pt-4 mt-5 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-bold text-slate-500">
+                    <span>Pune • Pan-India</span>
+                    <span className="bg-blue-600 text-white px-3 py-1 rounded-full uppercase tracking-wider text-[11px]">
+                      100% Application Focused
+                    </span>
+                  </div>
+                </div>
+
+                <div className="relative z-10 -mt-2 ml-10 sm:ml-14">
+                  <div className="w-0 h-0 border-t-[22px] border-t-slate-900 border-r-[24px] border-r-transparent" />
+                </div>
+              </motion.div>
+
             </div>
+
           </div>
         </section>
+
       </div>
     </>
   );

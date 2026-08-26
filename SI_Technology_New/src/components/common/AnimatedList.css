@@ -18,7 +18,7 @@
 }
 
 .scroll-list::-webkit-scrollbar-thumb {
-  background: rgba(13, 59, 102, 0.15);
+  background: rgba(37, 99, 235, 0.25);
   border-radius: 4px;
 }
 
@@ -33,13 +33,17 @@
 
 .item {
   padding: 16px;
-  background-color: #2F293A;
-  border-radius: 8px;
+  background-color: #0f172a;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 12px;
   margin-bottom: 1rem;
+  transition: all 0.3s ease;
 }
 
 .item.selected {
-  background-color: #2F293A;
+  background-color: #1e3a8a;
+  border-color: #2563eb;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
 }
 
 .item-text {
@@ -53,7 +57,7 @@
   left: 0;
   right: 0;
   height: 30px;
-  background: linear-gradient(to bottom, #f9fafb, transparent);
+  background: linear-gradient(to bottom, #0a1128, transparent);
   pointer-events: none;
   transition: opacity 0.3s ease;
   z-index: 10;
@@ -65,7 +69,7 @@
   left: 0;
   right: 0;
   height: 40px;
-  background: linear-gradient(to top, #f9fafb, transparent);
+  background: linear-gradient(to top, #0a1128, transparent);
   pointer-events: none;
   transition: opacity 0.3s ease;
   z-index: 10;

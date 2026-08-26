@@ -2069,23 +2069,23 @@ function ProductCard({ product, onDetails, index }) {
   const hasImage = product.image !== null && product.image !== undefined;
   return (
     <motion.div
-      className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-200 transition-all duration-300 flex flex-col"
+      className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-blue-100 hover:border-blue-400 transition-all duration-300 flex flex-col"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: Math.min(index * 0.04, 0.5), ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -4 }}
     >
       {/* Image area */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100" style={{ height: hasImage ? "260px" : "150px" }}>
+      <div className="relative overflow-hidden bg-gradient-to-br from-blue-50/50 to-slate-50" style={{ height: hasImage ? "260px" : "150px" }}>
         <ProductImage src={product.image} alt={product.name} />
-        <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-semibold text-primary-900 px-3 py-1 rounded-full border border-slate-200 shadow-sm">
+        <span className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-[10px] font-semibold text-blue-900 px-3 py-1 rounded-full border border-blue-200 shadow-sm">
           {ALUMINIUM_PROFILES.find(p => p.id === product.id) ? "Aluminium Profiles" : PROTECTION_SYSTEMS.find(p => p.id === product.id) ? "Protection Systems" : FINISHING_SYSTEMS.find(p => p.id === product.id) ? "Finishing Systems" : PROFILE_ASSEMBLY_SYSTEM.find(p => p.id === product.id) ? "Profile Assembly Systems" : HEAVY_DUTY_PROFILES.find(p => p.id === product.id) ? "Heavy Duty Profiles" : HEAVY_DUTY_APP.find(p => p.id === product.id) ? "Heavy Duty Applications" : BELT_CONVEYORS.find(p => p.id === product.id) ? "Belt Conveyors" : WORKSTATIONS.find(p => p.id === product.id) ? "Workstations" : PIPE_JOINT.find(p => p.id === product.id) ? "Pipe & Joint" : PROFILE_APP.find(p => p.id === product.id) ? "Profile App" : FASTENERS.find(p => p.id === product.id) ? "Fasteners" : "Accessories"}
         </span>
       </div>
 
       {/* Content */}
       <div className="flex flex-col flex-1 p-5">
-        <h1 className="font-display font-bold text-[15px] text-primary-900 mb-1.5 leading-tight">
+        <h1 className="font-display font-bold text-[15px] text-[#0f172a] mb-1.5 leading-tight group-hover:text-blue-600 transition-colors">
           {product.name}
         </h1>
         <p className="text-xs text-slate-500 leading-relaxed flex-1 line-clamp-3">{product.desc}</p>
@@ -2093,7 +2093,7 @@ function ProductCard({ product, onDetails, index }) {
         {/* Quick spec tags */}
         {product.specs["Weight / M"] && (
           <div className="flex flex-wrap gap-2 mt-3 mb-4">
-            <span className="text-[10px] bg-accent-500/10 text-accent-700 px-2 py-1 rounded-lg font-mono font-semibold">
+            <span className="text-[10px] bg-blue-50 text-blue-700 border border-blue-200 px-2 py-1 rounded-lg font-mono font-semibold">
               {product.specs["Weight / M"]}
             </span>
             {product.specs["Ix"] && (
@@ -2109,7 +2109,7 @@ function ProductCard({ product, onDetails, index }) {
           <button
             id={"details-btn-" + product.id}
             onClick={() => onDetails(product)}
-            className="flex-1 flex items-center justify-center gap-1.5 border border-slate-200 text-slate-700 text-xs font-semibold py-2.5 rounded-xl hover:bg-slate-50 hover:border-slate-300 transition-all"
+            className="flex-1 flex items-center justify-center gap-1.5 border border-slate-200 text-slate-700 text-xs font-semibold py-2.5 rounded-xl hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600 transition-all"
           >
             <Info size={13} />
             Details
@@ -2117,7 +2117,7 @@ function ProductCard({ product, onDetails, index }) {
           <button
             id={"enquiry-btn-" + product.id}
             onClick={() => navigate("/contact?machine=" + encodeURIComponent(product.name))}
-            className="flex-1 flex items-center justify-center gap-1.5 bg-primary-900 text-white text-xs font-semibold py-2.5 rounded-xl hover:bg-primary-800 transition-colors"
+            className="flex-1 flex items-center justify-center gap-1.5 bg-blue-600 text-white text-xs font-semibold py-2.5 rounded-xl hover:bg-blue-700 transition-colors shadow-sm shadow-blue-600/30"
           >
             Enquiry
             <ChevronRight size={13} />
@@ -2188,63 +2188,62 @@ export default function Products() {
         />
       </Helmet>
 
-      {/* HERO */}
-      <section className="relative overflow-hidden flex items-center" style={{ minHeight: "340px" }}>
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/images/products_hero_bg.png')" }}
-        />
-        <div className="absolute inset-0 bg-slate-950/40" /> {/* Dark overlay for text readability */}
-        
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 rounded-full bg-accent-500/10 blur-3xl pointer-events-none" />
+      {/* ─── 1. TOP HERO BANNER SECTION (PRODUCTS CATALOGUE) ─── */}
+      <section className="relative overflow-hidden bg-black text-white pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 border-b border-neutral-800">
+        {/* Custom Background Image - High Visibility & Brightness */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/products_hero_bg.png"
+            alt="SI Technology Products Catalogue"
+            className="w-full h-full object-cover object-center opacity-85 filter brightness-105 contrast-105 scale-105"
+          />
+          {/* Lighter Gradient Overlays so Photo Details and Lights Pop Clearly */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/35 to-black/80 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-transparent to-black/80 pointer-events-none" />
+        </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 w-full pt-32 pb-16">
-          {/* Breadcrumb */}
-          <nav className="flex items-center justify-start gap-2 text-xs sm:text-sm font-mono text-white/40 mb-6">
-            <Link to="/" className="hover:text-white/70 transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-accent-400 font-semibold">Products</span>
-          </nav>
+        {/* Grid Lines Pattern & Glowing Ambient White Lighting */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none z-1" />
+        <div className="absolute -top-24 left-1/4 w-96 h-96 bg-white/15 rounded-full blur-3xl pointer-events-none z-1" />
+        <div className="absolute -bottom-24 right-1/4 w-96 h-96 bg-slate-300/10 rounded-full blur-3xl pointer-events-none z-1" />
 
-          <div
-            className="flex flex-col items-center text-center"
-          >
-            <h1 className="text-2xl xs:text-3xl sm:text-5xl font-display font-black leading-[1.15] mb-4">
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-white"
-              >
-                Our Product
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-[#f97316] mt-1"
-              >
-                Catalog.
-              </motion.span>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          {/* Top Breadcrumbs Row (Left-aligned) */}
+          <div className="flex items-center justify-start mb-3">
+            <nav className="flex items-center gap-2 text-xs sm:text-sm font-mono text-slate-200 tracking-wide drop-shadow-md">
+              <Link to="/" className="hover:text-white transition-colors font-medium">Home</Link>
+              <span className="text-slate-400">•</span>
+              <span className="text-white font-bold tracking-wider">Products Catalogue</span>
+            </nav>
+          </div>
+
+          {/* Main Centered Banner Content (Bright White & High Contrast) */}
+          <div className="flex flex-col items-center justify-center text-center space-y-3 py-4">
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-display font-black text-white uppercase tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,1)]">
+              Products Catalogue
             </h1>
-            <p className="text-white/55 text-sm sm:text-base max-w-lg leading-relaxed font-semibold">
-              Modular aluminium extrusion systems, precision fasteners, and accessories — engineered for industrial framing and automation.
+
+            <p className="text-white font-semibold text-xs sm:text-base max-w-2xl tracking-normal leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,1)]">
+              Modular Aluminium Extrusions, Precision Fasteners &amp; Accessories for Industrial Automation
             </p>
+
+            {/* Glowing Bright White Accent Line */}
+            <div className="w-28 sm:w-40 h-1 bg-gradient-to-r from-transparent via-white to-transparent rounded-full mt-2 shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
           </div>
         </div>
       </section>
 
       {/* CATALOG BODY */}
-      <section className="bg-slate-50 min-h-screen py-10">
+      <section className="bg-slate-50 min-h-screen py-10 border-t border-blue-100">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex gap-7 items-start">
 
             {/* SIDEBAR */}
             <aside className="hidden lg:block w-64 flex-shrink-0 sticky-sidebar">
-              <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 max-h-[calc(100vh-120px)] flex flex-col">
+              <div className="bg-white rounded-2xl border border-blue-100 shadow-sm p-5 max-h-[calc(100vh-120px)] flex flex-col">
                 <div className="flex items-center gap-2 mb-5 flex-shrink-0">
-                  <Filter size={14} className="text-accent-500" />
-                  <span className="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 font-bold">
+                  <Filter size={14} className="text-blue-600" />
+                  <span className="text-xs font-mono uppercase tracking-[0.2em] text-blue-900 font-bold">
                     Product Categories
                   </span>
                 </div>
@@ -2254,10 +2253,10 @@ export default function Products() {
                       key={cat.id}
                       id={"cat-btn-" + cat.id}
                       onClick={() => setActiveCategory(cat.id)}
-                      className={"w-full flex items-center justify-between px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 " + (activeCategory === cat.id ? "bg-primary-900 text-white" : "text-slate-600 hover:bg-slate-50 hover:text-primary-900")}
+                      className={"w-full flex items-center justify-between px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 " + (activeCategory === cat.id ? "bg-blue-600 text-white shadow-md shadow-blue-600/30" : "text-slate-600 hover:bg-blue-50 hover:text-blue-600")}
                     >
                       <span>{cat.label}</span>
-                      <span className={"text-[11px] font-mono font-bold px-2 py-0.5 rounded-full " + (activeCategory === cat.id ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500")}>
+                      <span className={"text-[11px] font-mono font-bold px-2 py-0.5 rounded-full " + (activeCategory === cat.id ? "bg-white/20 text-white" : "bg-blue-50 text-blue-600")}>
                         {cat.count}
                       </span>
                     </button>
@@ -2269,13 +2268,13 @@ export default function Products() {
             {/* MAIN AREA */}
             <div className="flex-1 min-w-0">
               {/* Header bar */}
-              <div className="bg-white rounded-2xl border border-slate-100 shadow-sm px-6 py-4 mb-4 flex items-center justify-between flex-wrap gap-3">
+              <div className="bg-white rounded-2xl border border-blue-100 shadow-sm px-6 py-4 mb-4 flex items-center justify-between flex-wrap gap-3">
                 <div>
-                  <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-400 mb-0.5">Catalog View</p>
-                  <h2 className="text-xl font-display font-bold text-primary-900">{activeCat ? activeCat.label : ""}</h2>
+                  <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-blue-600 mb-0.5">Catalog View</p>
+                  <h2 className="text-xl font-display font-bold text-[#0f172a]">{activeCat ? activeCat.label : ""}</h2>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-sm text-slate-400 font-light">
+                  <span className="text-sm text-slate-500 font-light">
                     Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1}–{Math.min(currentPage * ITEMS_PER_PAGE, allProducts.length)} of {allProducts.length} Products
                   </span>
                 </div>
@@ -2289,8 +2288,8 @@ export default function Products() {
                     onClick={() => { setActiveCategory(cat.id); setCurrentPage(1); }}
                     className={"text-xs font-semibold px-4 py-2.5 rounded-full transition-all shrink-0 cursor-pointer border " + 
                       (activeCategory === cat.id 
-                        ? "bg-primary-900 text-white border-primary-900 shadow-md shadow-primary-900/15" 
-                        : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50")}
+                        ? "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-600/30" 
+                        : "bg-white text-slate-600 border-slate-200 hover:bg-blue-50")}
                   >
                     {cat.label} ({cat.count})
                   </button>
@@ -2322,7 +2321,7 @@ export default function Products() {
                   <button
                     onClick={() => goToPage(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className="w-10 h-10 rounded-full flex items-center justify-center border border-slate-200 bg-white text-slate-500 hover:border-primary-900 hover:text-primary-900 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200 shadow-sm"
+                    className="w-10 h-10 rounded-full flex items-center justify-center border border-blue-200 bg-white text-slate-600 hover:border-blue-600 hover:text-blue-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200 shadow-sm"
                     aria-label="Previous page"
                   >
                     <ChevronLeft size={16} />
@@ -2334,7 +2333,6 @@ export default function Products() {
                     const delta = 2;
                     let start = Math.max(1, currentPage - delta);
                     let end   = Math.min(totalPages, currentPage + delta);
-                    // Always show at least 5 pages if possible
                     if (end - start < 4) {
                       if (start === 1) end   = Math.min(totalPages, start + 4);
                       else            start = Math.max(1, end - 4);
@@ -2342,7 +2340,7 @@ export default function Products() {
                     if (start > 1) {
                       pages.push(
                         <button key={1} onClick={() => goToPage(1)}
-                          className="w-10 h-10 rounded-full flex items-center justify-center border border-slate-200 bg-white text-slate-600 text-sm font-semibold hover:border-primary-900 hover:text-primary-900 transition-all duration-200 shadow-sm">
+                          className="w-10 h-10 rounded-full flex items-center justify-center border border-blue-200 bg-white text-slate-600 text-sm font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-200 shadow-sm">
                           1
                         </button>
                       );
@@ -2355,8 +2353,8 @@ export default function Products() {
                           onClick={() => goToPage(p)}
                           className={"w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-200 shadow-sm " +
                             (p === currentPage
-                              ? "bg-primary-900 text-white border border-primary-900 scale-110"
-                              : "border border-slate-200 bg-white text-slate-600 hover:border-primary-900 hover:text-primary-900")}
+                              ? "bg-blue-600 text-white border border-blue-600 scale-110 shadow-md shadow-blue-600/30"
+                              : "border border-blue-200 bg-white text-slate-600 hover:border-blue-600 hover:text-blue-600")}
                           aria-current={p === currentPage ? "page" : undefined}
                         >
                           {p}
@@ -2367,7 +2365,7 @@ export default function Products() {
                       if (end < totalPages - 1) pages.push(<span key="e" className="text-slate-400 px-1 select-none">…</span>);
                       pages.push(
                         <button key={totalPages} onClick={() => goToPage(totalPages)}
-                          className="w-10 h-10 rounded-full flex items-center justify-center border border-slate-200 bg-white text-slate-600 text-sm font-semibold hover:border-primary-900 hover:text-primary-900 transition-all duration-200 shadow-sm">
+                          className="w-10 h-10 rounded-full flex items-center justify-center border border-blue-200 bg-white text-slate-600 text-sm font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-200 shadow-sm">
                           {totalPages}
                         </button>
                       );

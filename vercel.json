@@ -1,7 +1,6 @@
 {
-  "installCommand": "npm --prefix SI_Technology_New install --include=dev",
-  "buildCommand": "npm --prefix SI_Technology_New install --include=dev && npm --prefix SI_Technology_New run build",
-  "outputDirectory": "SI_Technology_New/dist",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
