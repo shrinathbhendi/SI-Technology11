@@ -152,7 +152,11 @@ export default function EngineeringApproachDial() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
                   
                   {/* ROUND PHOTO SHAPE CONTAINER (LEFT OR RIGHT DEPENDING ON ROW) */}
-                  <div
+                  <motion.div
+                    initial={{ opacity: 0, x: isEven ? -70 : 70 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
                     className={`lg:col-span-5 flex justify-center ${
                       isEven ? "lg:order-1" : "lg:order-2"
                     }`}
@@ -189,10 +193,14 @@ export default function EngineeringApproachDial() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* TEXT INFO CONTAINER */}
-                  <div
+                  <motion.div
+                    initial={{ opacity: 0, x: isEven ? 70 : -70 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
                     className={`lg:col-span-7 space-y-4 text-left ${
                       isEven ? "lg:order-2" : "lg:order-1"
                     }`}
@@ -232,7 +240,7 @@ export default function EngineeringApproachDial() {
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
 
                 </div>
               </motion.div>

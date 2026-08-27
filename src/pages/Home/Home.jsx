@@ -416,67 +416,156 @@ export default function Home() {
               
               {/* ─── FLOATING LIGHT BLUE BACKSIDE CIRCLES (AT EXACT USER RED-CIRCLED LOCATIONS) ─── */}
               {/* 1. Top-Left Corner Circle */}
-              <div className="absolute top-3 left-3 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-sky-400/45 border border-white/50 shadow-sm pointer-events-none z-0" />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="absolute top-3 left-3 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-sky-400/45 border border-white/50 shadow-sm pointer-events-none z-0"
+              />
 
               {/* 2. Behind Headline Text Circle (Top-Right of Headline) */}
-              <div className="absolute top-8 left-[30%] sm:left-[34%] w-28 h-28 sm:w-36 sm:h-36 lg:w-44 lg:h-44 rounded-full bg-sky-300/40 border border-white/40 shadow-lg pointer-events-none z-0" />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="absolute top-8 left-[30%] sm:left-[34%] w-28 h-28 sm:w-36 sm:h-36 lg:w-44 lg:h-44 rounded-full bg-sky-300/40 border border-white/40 shadow-lg pointer-events-none z-0"
+              />
 
               {/* 3. Behind Paragraph Text Circle (Middle-Right of Text) */}
-              <div className="absolute top-[48%] left-[36%] sm:left-[39%] w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full bg-sky-400/35 border border-white/35 shadow-md pointer-events-none z-0" />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="absolute top-[48%] left-[36%] sm:left-[39%] w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full bg-sky-400/35 border border-white/35 shadow-md pointer-events-none z-0"
+              />
 
               {/* 4. Bottom-Left Circle (Near "Know More About Us" Button) */}
-              <div className="absolute bottom-5 left-5 w-14 h-14 sm:w-18 sm:h-18 rounded-full bg-sky-400/40 border border-white/40 shadow-sm pointer-events-none z-0" />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="absolute bottom-5 left-5 w-14 h-14 sm:w-18 sm:h-18 rounded-full bg-sky-400/40 border border-white/40 shadow-sm pointer-events-none z-0"
+              />
 
               {/* 5. Bottom-Middle Circle (Between Text & Center Hub) */}
-              <div className="absolute bottom-4 left-[32%] sm:left-[35%] w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-sky-300/45 border border-white/45 shadow-md pointer-events-none z-0" />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, delay: 0.45 }}
+                className="absolute bottom-4 left-[32%] sm:left-[35%] w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-sky-300/45 border border-white/45 shadow-md pointer-events-none z-0"
+              />
 
               {/* 6. Top-Right Corner Circle */}
-              <div className="absolute -top-4 -right-4 w-32 h-32 sm:w-44 sm:h-44 lg:w-52 lg:h-52 rounded-full bg-sky-400/35 border border-white/45 shadow-lg pointer-events-none z-0" />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, delay: 0.25 }}
+                className="absolute -top-4 -right-4 w-32 h-32 sm:w-44 sm:h-44 lg:w-52 lg:h-52 rounded-full bg-sky-400/35 border border-white/45 shadow-lg pointer-events-none z-0"
+              />
 
               {/* 7. Middle-Right Edge Circle */}
-              <div className="absolute top-[45%] right-2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-sky-400/40 border border-white/35 shadow-sm pointer-events-none z-0" />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="absolute top-[45%] right-2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-sky-400/40 border border-white/35 shadow-sm pointer-events-none z-0"
+              />
 
               {/* 8. Bottom-Right Edge Circle */}
-              <div className="absolute bottom-6 right-6 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sky-400/45 border border-white/35 shadow-sm pointer-events-none z-0" />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: 0.55 }}
+                className="absolute bottom-6 right-6 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sky-400/45 border border-white/35 shadow-sm pointer-events-none z-0"
+              />
 
               {/* 9. Small Floating Accent Circles in Middle Gaps */}
-              <div className="absolute top-1/3 left-[46%] w-6 h-6 rounded-full bg-sky-400/50 border border-white/40 pointer-events-none z-0" />
-              <div className="absolute bottom-1/3 left-[43%] w-8 h-8 rounded-full bg-sky-300/45 border border-white/40 pointer-events-none z-0" />
-              <div className="absolute top-1/4 right-[25%] w-5 h-5 rounded-full bg-sky-400/40 border border-white/30 pointer-events-none z-0" />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: 0.35 }}
+                className="absolute top-1/3 left-[46%] w-6 h-6 rounded-full bg-sky-400/50 border border-white/40 pointer-events-none z-0"
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="absolute bottom-1/3 left-[43%] w-8 h-8 rounded-full bg-sky-300/45 border border-white/40 pointer-events-none z-0"
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: 0.45 }}
+                className="absolute top-1/4 right-[25%] w-5 h-5 rounded-full bg-sky-400/40 border border-white/30 pointer-events-none z-0"
+              />
 
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center relative z-10">
 
-                {/* Left Column (5 cols): Text content */}
-                <motion.div
-                  className="lg:col-span-5 space-y-4 relative z-10"
-                  initial={{ opacity: 0, x: -60 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  {/* Accent Subtitle Badge */}
-                  <div className="flex items-center gap-2.5 text-xs font-mono font-bold tracking-widest text-blue-950 uppercase">
+                {/* Left Column (5 cols): Text content - QUICK LINE BY LINE ANIMATIONS */}
+                <div className="lg:col-span-5 space-y-4 relative z-10">
+                  {/* Accent Subtitle Badge (Line 1) */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 15, x: -15 }}
+                    whileInView={{ opacity: 1, y: 0, x: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.4, delay: 0.05, ease: "easeOut" }}
+                    className="flex items-center gap-2.5 text-xs font-mono font-bold tracking-widest text-blue-950 uppercase"
+                  >
                     <span className="w-8 h-1 bg-blue-700 rounded-full" />
                     ABOUT S I TECHNOLOGY
-                  </div>
+                  </motion.div>
 
-                  <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-[2.2rem] font-display font-black text-[#0f172a] tracking-tight leading-[1.2] drop-shadow-sm">
+                  {/* Headline (Line 2) */}
+                  <motion.h2
+                    initial={{ opacity: 0, y: 20, x: -15 }}
+                    whileInView={{ opacity: 1, y: 0, x: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.45, delay: 0.12, ease: "easeOut" }}
+                    className="text-xl xs:text-2xl sm:text-3xl lg:text-[2.2rem] font-display font-black text-[#0f172a] tracking-tight leading-[1.2] drop-shadow-sm"
+                  >
                     Engineering Industrial Aluminium Profile / MS &amp; SS Fabrication Solutions for Modern Manufacturing
-                  </h2>
+                  </motion.h2>
 
-                  {/* Text Paragraphs */}
+                  {/* Text Paragraphs (Line 3 & Line 4) */}
                   <div className="space-y-3.5 text-slate-900 text-sm sm:text-base leading-relaxed font-semibold">
-                    <p>
+                    <motion.p
+                      initial={{ opacity: 0, y: 20, x: -15 }}
+                      whileInView={{ opacity: 1, y: 0, x: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.45, delay: 0.19, ease: "easeOut" }}
+                    >
                       S I Technology is a Pune-based industrial solutions company specializing in Aluminium Extrusion Profiles, Aluminium Profile Structures, Pipe &amp; Joint Systems, Industrial Workstations, Material Handling Systems, Conveyor Systems structures, Industrial Trolleys, Industrial Enclosures and customized engineering solutions.
-                    </p>
-                    <p>
+                    </motion.p>
+                    <motion.p
+                      initial={{ opacity: 0, y: 20, x: -15 }}
+                      whileInView={{ opacity: 1, y: 0, x: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.45, delay: 0.26, ease: "easeOut" }}
+                    >
                       Established in 2018, we support manufacturing companies, automation companies, engineering organizations and industrial customers with reliable products and practical solutions designed around their specific applications.
-                    </p>
+                    </motion.p>
                   </div>
 
-                  {/* Action Button */}
-                  <div className="pt-3">
+                  {/* Action Button (Line 5) */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 15, scale: 0.9 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.4, delay: 0.33, ease: "easeOut" }}
+                    className="pt-3"
+                  >
                     <Link
                       to="/about"
                       className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-blue-900 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold uppercase tracking-wider shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group/btn"
@@ -484,23 +573,23 @@ export default function Home() {
                       KNOW MORE ABOUT US
                       <ArrowRight size={15} className="group-hover/btn:translate-x-1.5 transition-transform duration-300" />
                     </Link>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
 
-                {/* Right Column (7 cols): Photo 1 Overlapping Floating Circles Composition */}
-                <motion.div
-                  className="lg:col-span-7 relative min-h-[420px] sm:min-h-[480px] lg:min-h-[520px] flex items-center justify-center py-6 relative z-10"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+                {/* Right Column (7 cols): Photo Composition - QUICK ONE-BY-ONE SPIN & ZOOM ANIMATION */}
+                <div
+                  className="lg:col-span-7 relative min-h-[420px] sm:min-h-[480px] lg:min-h-[520px] flex items-center justify-center py-6 z-10"
                 >
                   <div className="relative w-full max-w-[550px] aspect-square flex items-center justify-center">
 
-                    {/* 1. CENTER MAIN DARK BLUE CIRCLE: Company Logo Hub */}
+                    {/* 1. CENTER MAIN DARK BLUE CIRCLE: Company Logo Hub (Quick Spin & Zoom 1st) */}
                     <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      className="absolute z-20 w-44 h-44 xs:w-52 xs:h-52 sm:w-64 sm:h-64 rounded-full bg-[#0a1128] border-4 border-white shadow-2xl overflow-hidden flex flex-col items-center justify-center cursor-pointer transition-transform duration-500 group/center"
+                      initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                      whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.5, delay: 0.05, type: "spring", stiffness: 220, damping: 16 }}
+                      whileHover={{ scale: 1.08, zIndex: 40 }}
+                      className="absolute z-20 w-44 h-44 xs:w-52 xs:h-52 sm:w-64 sm:h-64 rounded-full bg-[#0a1128] border-4 border-white shadow-2xl overflow-hidden flex flex-col items-center justify-center cursor-pointer transition-all duration-500 group/center"
                     >
                       <img
                         src="/images/logo/si-technology-logo-round.jpg"
@@ -513,57 +602,13 @@ export default function Home() {
                       />
                     </motion.div>
 
-                    {/* 2. LIGHT BLUE CIRCLE #1 (Top-Right): Product Photo 1 (Aluminium Profiles) */}
+                    {/* 2. DARK BLUE ACCENT CIRCLE (Top-Center): Established 2018 Badge (Quick Spin & Zoom 2nd) */}
                     <motion.div
-                      whileHover={{ scale: 1.1, zIndex: 30 }}
-                      className="absolute top-2 right-4 xs:right-8 sm:top-0 sm:right-6 w-32 h-32 xs:w-36 xs:h-36 sm:w-44 sm:h-44 rounded-full bg-sky-500 border-4 border-white shadow-xl overflow-hidden cursor-pointer transition-all duration-500 group/p1 z-10"
-                    >
-                      <img
-                        src="/images/profile_app/pa_001_b.jpg"
-                        alt="Aluminium Profile Systems"
-                        className="w-full h-full object-cover group-hover/p1:scale-110 transition-transform duration-700"
-                      />
-                    </motion.div>
-
-                    {/* 3. LIGHT BLUE CIRCLE #2 (Mid-Left): Product Photo 2 (Industrial Workstations) */}
-                    <motion.div
-                      whileHover={{ scale: 1.1, zIndex: 30 }}
-                      className="absolute top-16 left-0 xs:left-2 sm:top-20 sm:left-4 w-28 h-28 xs:w-32 xs:h-32 sm:w-40 sm:h-40 rounded-full bg-blue-600 border-4 border-white shadow-xl overflow-hidden cursor-pointer transition-all duration-500 group/p2 z-10"
-                    >
-                      <img
-                        src="/images/about_workbench.jpg"
-                        alt="Industrial Workstations"
-                        className="w-full h-full object-cover group-hover/p2:scale-110 transition-transform duration-700"
-                      />
-                    </motion.div>
-
-                    {/* 4. LIGHT BLUE CIRCLE #3 (Bottom-Right): Product Photo 3 (Pipe & Joint Systems) */}
-                    <motion.div
-                      whileHover={{ scale: 1.1, zIndex: 30 }}
-                      className="absolute bottom-4 right-2 xs:right-6 sm:bottom-4 sm:right-8 w-32 h-32 xs:w-36 xs:h-36 sm:w-44 sm:h-44 rounded-full bg-sky-400 border-4 border-white shadow-xl overflow-hidden cursor-pointer transition-all duration-500 group/p3 z-10"
-                    >
-                      <img
-                        src="/images/about_who_we_are.png"
-                        alt="Pipe &amp; Joint Systems"
-                        className="w-full h-full object-cover group-hover/p3:scale-110 transition-transform duration-700"
-                      />
-                    </motion.div>
-
-                    {/* 5. LIGHT BLUE CIRCLE #4 (Bottom-Left): Product Photo 4 (3D Custom Extrusion) */}
-                    <motion.div
-                      whileHover={{ scale: 1.1, zIndex: 30 }}
-                      className="absolute bottom-0 left-6 xs:left-10 sm:bottom-2 sm:left-12 w-28 h-28 xs:w-32 xs:h-32 sm:w-38 sm:h-38 rounded-full bg-blue-500 border-4 border-white shadow-xl overflow-hidden cursor-pointer transition-all duration-500 group/p4 z-10"
-                    >
-                      <img
-                        src="/images/hero-profile-3d.png"
-                        alt="Custom Engineering"
-                        className="w-full h-full object-contain p-2 bg-slate-900 group-hover/p4:scale-110 transition-transform duration-700"
-                      />
-                    </motion.div>
-
-                    {/* 6. DARK BLUE ACCENT CIRCLE (Top-Center): Established 2018 Badge */}
-                    <motion.div
-                      whileHover={{ scale: 1.1, zIndex: 30 }}
+                      initial={{ opacity: 0, scale: 0, rotate: 180, y: -30 }}
+                      whileInView={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.5, delay: 0.12, type: "spring", stiffness: 220, damping: 16 }}
+                      whileHover={{ scale: 1.15, zIndex: 40 }}
                       className="absolute -top-4 left-1/3 -translate-x-1/2 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#0a1128] border-4 border-white shadow-lg flex flex-col items-center justify-center p-2 text-center text-white cursor-pointer z-10"
                     >
                       <Award size={18} className="text-blue-400 mb-0.5" />
@@ -575,9 +620,45 @@ export default function Home() {
                       </span>
                     </motion.div>
 
-                    {/* 7. DARK BLUE ACCENT CIRCLE (Far-Right): Pune Base */}
+                    {/* 3. LIGHT BLUE CIRCLE #1 (Top-Right): Product Photo 1 (Aluminium Profiles - Quick Spin & Zoom 3rd) */}
                     <motion.div
-                      whileHover={{ scale: 1.1, zIndex: 30 }}
+                      initial={{ opacity: 0, scale: 0, rotate: -180, x: 40, y: -20 }}
+                      whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0, y: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.5, delay: 0.19, type: "spring", stiffness: 220, damping: 16 }}
+                      whileHover={{ scale: 1.12, zIndex: 40 }}
+                      className="absolute top-2 right-4 xs:right-8 sm:top-0 sm:right-6 w-32 h-32 xs:w-36 xs:h-36 sm:w-44 sm:h-44 rounded-full bg-sky-500 border-4 border-white shadow-xl overflow-hidden cursor-pointer transition-all duration-500 group/p1 z-10"
+                    >
+                      <img
+                        src="/images/profile_app/pa_001_b.jpg"
+                        alt="Aluminium Profile Systems"
+                        className="w-full h-full object-cover group-hover/p1:scale-110 transition-transform duration-700"
+                      />
+                    </motion.div>
+
+                    {/* 4. LIGHT BLUE CIRCLE #2 (Mid-Left): Product Photo 2 (Industrial Workstations - Quick Spin & Zoom 4th) */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0, rotate: 180, x: -40 }}
+                      whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.5, delay: 0.26, type: "spring", stiffness: 220, damping: 16 }}
+                      whileHover={{ scale: 1.12, zIndex: 40 }}
+                      className="absolute top-16 left-0 xs:left-2 sm:top-20 sm:left-4 w-28 h-28 xs:w-32 xs:h-32 sm:w-40 sm:h-40 rounded-full bg-blue-600 border-4 border-white shadow-xl overflow-hidden cursor-pointer transition-all duration-500 group/p2 z-10"
+                    >
+                      <img
+                        src="/images/about_workbench.jpg"
+                        alt="Industrial Workstations"
+                        className="w-full h-full object-cover group-hover/p2:scale-110 transition-transform duration-700"
+                      />
+                    </motion.div>
+
+                    {/* 5. DARK BLUE ACCENT CIRCLE (Far-Right): Pune Base (Quick Spin & Zoom 5th) */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0, rotate: -180, x: 40 }}
+                      whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.5, delay: 0.33, type: "spring", stiffness: 220, damping: 16 }}
+                      whileHover={{ scale: 1.15, zIndex: 40 }}
                       className="absolute top-1/2 -right-4 -translate-y-1/2 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#0f172a] border-4 border-white shadow-lg flex flex-col items-center justify-center p-2 text-center text-white cursor-pointer z-10"
                     >
                       <Cog size={18} className="text-sky-400 mb-0.5" />
@@ -586,10 +667,40 @@ export default function Home() {
                       </span>
                     </motion.div>
 
+                    {/* 6. LIGHT BLUE CIRCLE #3 (Bottom-Right): Product Photo 3 (Pipe & Joint Systems - Quick Spin & Zoom 6th) */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0, rotate: 180, x: 30, y: 30 }}
+                      whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0, y: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.5, delay: 0.40, type: "spring", stiffness: 220, damping: 16 }}
+                      whileHover={{ scale: 1.12, zIndex: 40 }}
+                      className="absolute bottom-4 right-2 xs:right-6 sm:bottom-4 sm:right-8 w-32 h-32 xs:w-36 xs:h-36 sm:w-44 sm:h-44 rounded-full bg-sky-400 border-4 border-white shadow-xl overflow-hidden cursor-pointer transition-all duration-500 group/p3 z-10"
+                    >
+                      <img
+                        src="/images/about_who_we_are.png"
+                        alt="Pipe &amp; Joint Systems"
+                        className="w-full h-full object-cover group-hover/p3:scale-110 transition-transform duration-700"
+                      />
+                    </motion.div>
 
+                    {/* 7. LIGHT BLUE CIRCLE #4 (Bottom-Left): Product Photo 4 (3D Custom Extrusion - Quick Spin & Zoom 7th) */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0, rotate: -180, x: -30, y: 30 }}
+                      whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0, y: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.5, delay: 0.47, type: "spring", stiffness: 220, damping: 16 }}
+                      whileHover={{ scale: 1.12, zIndex: 40 }}
+                      className="absolute bottom-0 left-6 xs:left-10 sm:bottom-2 sm:left-12 w-28 h-28 xs:w-32 xs:h-32 sm:w-38 sm:h-38 rounded-full bg-blue-500 border-4 border-white shadow-xl overflow-hidden cursor-pointer transition-all duration-500 group/p4 z-10"
+                    >
+                      <img
+                        src="/images/hero-profile-3d.png"
+                        alt="Custom Engineering"
+                        className="w-full h-full object-contain p-2 bg-slate-900 group-hover/p4:scale-110 transition-transform duration-700"
+                      />
+                    </motion.div>
 
                   </div>
-                </motion.div>
+                </div>
 
               </div>
             </div>
@@ -750,7 +861,13 @@ export default function Home() {
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10">
 
             {/* Section Header */}
-            <div className="text-center space-y-3">
+            <motion.div
+              initial={{ opacity: 0, y: -30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-center space-y-3"
+            >
               <div className="inline-flex items-center gap-2 bg-blue-100 border border-blue-200 rounded-full px-4 py-1.5 text-xs text-blue-700 font-bold uppercase tracking-wider">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
                 Core Outlook
@@ -761,13 +878,19 @@ export default function Home() {
               <p className="text-blue-600 text-sm font-mono font-bold uppercase tracking-widest mt-1">
                 Global Quality Standard
               </p>
-            </div>
+            </motion.div>
 
             {/* Infographic Container */}
             <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 py-4">
 
-              {/* Left Card: OUR MISSION */}
-              <div className="relative w-[290px] h-[290px] xs:w-80 xs:h-80 sm:w-96 sm:h-96 [perspective:1000px] group shrink-0">
+              {/* Left Card: OUR MISSION (Spin into view on scroll) */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5, rotate: -45, x: -50 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.85, type: "spring", stiffness: 120, damping: 14, delay: 0.2 }}
+                className="relative w-[290px] h-[290px] xs:w-80 xs:h-80 sm:w-96 sm:h-96 [perspective:1000px] group shrink-0"
+              >
                 <div
                   onClick={() => setMissionFlipped(!missionFlipped)}
                   className={`relative w-full h-full duration-700 transition-all [transform-style:preserve-3d] ${missionFlipped ? "[transform:rotateY(180deg)]" : ""
@@ -824,10 +947,16 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Desktop Connecting Bridge */}
-              <div className="hidden lg:flex items-center justify-center w-36 shrink-0 relative z-20 mx-[-3rem]">
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: 0.5, type: "spring" }}
+                className="hidden lg:flex items-center justify-center w-36 shrink-0 relative z-20 mx-[-3rem]"
+              >
                 <div className="w-10 h-6 bg-blue-600 rounded-full flex items-center justify-center -mr-2 relative z-10 shadow-sm border border-white">
                   <div className="w-2 h-2 rounded-full bg-white" />
                 </div>
@@ -835,10 +964,16 @@ export default function Home() {
                 <div className="w-10 h-6 bg-blue-900 rounded-full flex items-center justify-center -ml-2 relative z-10 shadow-sm border border-white">
                   <div className="w-2 h-2 rounded-full bg-white" />
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Right Card: OUR VISION */}
-              <div className="relative w-[290px] h-[290px] xs:w-80 xs:h-80 sm:w-96 sm:h-96 [perspective:1000px] group shrink-0">
+              {/* Right Card: OUR VISION (Spin into view on scroll) */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5, rotate: 45, x: 50 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.85, type: "spring", stiffness: 120, damping: 14, delay: 0.35 }}
+                className="relative w-[290px] h-[290px] xs:w-80 xs:h-80 sm:w-96 sm:h-96 [perspective:1000px] group shrink-0"
+              >
                 <div
                   onClick={() => setVisionFlipped(!visionFlipped)}
                   className={`relative w-full h-full duration-700 transition-all [transform-style:preserve-3d] ${visionFlipped ? "[transform:rotateY(180deg)]" : ""
@@ -890,7 +1025,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
             </div>
 
@@ -905,7 +1040,13 @@ export default function Home() {
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
             {/* Section Header */}
-            <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 sm:mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: -30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-center max-w-3xl mx-auto space-y-3 mb-12 sm:mb-16"
+            >
               <span className="inline-flex items-center gap-2 bg-[#0a1128] text-white rounded-full px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
                 SIT BLUEPRINT
@@ -916,7 +1057,7 @@ export default function Home() {
               <p className="text-slate-600 text-sm sm:text-base font-semibold max-w-2xl mx-auto leading-relaxed">
                 Foundational structural tenets guiding every lean shopfloor assembly line and workstation engineered at SI Technology.
               </p>
-            </div>
+            </motion.div>
 
 
 
@@ -927,7 +1068,13 @@ export default function Home() {
               className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch max-w-6xl mx-auto"
             >
               {/* LEFT COLUMN: ACTIVE PHOTO CARD & THUMBNAILS */}
-              <div className="lg:col-span-6 flex flex-col justify-between bg-white rounded-3xl border border-slate-200/90 p-4 sm:p-6 shadow-[0_15px_35px_rgba(15,23,42,0.08)] relative overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, x: -50, scale: 0.95 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
+                className="lg:col-span-6 flex flex-col justify-between bg-white rounded-3xl border border-slate-200/90 p-4 sm:p-6 shadow-[0_15px_35px_rgba(15,23,42,0.08)] relative overflow-hidden"
+              >
                 {/* Top Accent Gradient Bar */}
                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 via-sky-400 to-blue-800" />
 
@@ -1012,10 +1159,16 @@ export default function Home() {
                     </button>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
               {/* RIGHT COLUMN: PILLAR INFO CARD */}
-              <div className="lg:col-span-6 bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-9 shadow-[0_15px_35px_rgba(15,23,42,0.08)] flex flex-col justify-between relative min-h-[420px]">
+              <motion.div
+                initial={{ opacity: 0, x: 50, scale: 0.95 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+                className="lg:col-span-6 bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-9 shadow-[0_15px_35px_rgba(15,23,42,0.08)] flex flex-col justify-between relative min-h-[420px]"
+              >
                 {/* Top Accent Gradient Bar */}
                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 via-sky-400 to-blue-800 rounded-t-3xl" />
 
@@ -1088,10 +1241,16 @@ export default function Home() {
                         ["Reusable T-slot profiles & joints", "Scalable modular framework", "Future-proof shopfloor expansion"],
                         ["Dedicated technical CAD support", "Step-by-step assembly manuals", "Pan-India delivery & site guidance"]
                       ][activePillar].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, x: 15 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3, delay: i * 0.08 }}
+                          className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800"
+                        >
                           <CheckCircle2 size={16} className="text-blue-600 shrink-0" />
                           <span>{item}</span>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </motion.div>
@@ -1134,7 +1293,7 @@ export default function Home() {
                     </button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
           </div>

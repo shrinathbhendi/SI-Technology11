@@ -221,8 +221,14 @@ export default function About() {
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-              {/* LEFT COLUMN: Text Content & Stat Cards (7 cols) */}
-              <div className="lg:col-span-7 space-y-6 flex flex-col items-start text-left">
+              {/* LEFT COLUMN: Text Content & Stat Cards (7 cols) - Animates in from Left */}
+              <motion.div
+                initial={{ opacity: 0, x: -80 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="lg:col-span-7 space-y-6 flex flex-col items-start text-left"
+              >
                 {/* Subtitle Badge */}
                 <div className="flex items-center gap-2.5 text-xs sm:text-sm font-mono font-bold tracking-widest text-blue-600 uppercase bg-blue-50 border border-blue-200 px-3.5 py-1.5 rounded-full shadow-sm">
                   <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
@@ -285,10 +291,16 @@ export default function About() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* RIGHT COLUMN: Dedicated Photo Container in Unique Shape with Dark Blue & Black Shadow (5 cols) */}
-              <div className="lg:col-span-5 relative flex items-center justify-center pt-4 lg:pt-0">
+              {/* RIGHT COLUMN: Dedicated Photo Container in Unique Shape with Dark Blue & Black Shadow (5 cols) - Animates in from Right */}
+              <motion.div
+                initial={{ opacity: 0, x: 80 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="lg:col-span-5 relative flex items-center justify-center pt-4 lg:pt-0"
+              >
                 {/* Decorative Soft Dark-Blue Ambient Glow Behind Image */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/15 via-sky-800/10 to-transparent rounded-[3rem] blur-2xl transform scale-105 pointer-events-none" />
 
@@ -301,7 +313,7 @@ export default function About() {
                     className="w-full h-[360px] sm:h-[440px] lg:h-[480px] object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-100 contrast-105"
                   />
                 </div>
-              </div>
+              </motion.div>
 
             </div>
           </div>
@@ -325,7 +337,13 @@ export default function About() {
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* Centered Section Header */}
-            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-3">
+            <motion.div
+              initial={{ opacity: 0, y: -30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-3"
+            >
               <span className="inline-flex items-center gap-2 bg-blue-950/80 border border-blue-700/60 rounded-full px-4 py-1.5 text-xs text-sky-300 font-mono font-bold uppercase tracking-wider shadow-md backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
                 HOW WE WORK
@@ -336,10 +354,16 @@ export default function About() {
               <p className="text-sky-100/90 text-sm sm:text-base font-semibold max-w-2xl mx-auto leading-relaxed">
                 At S I Technology, we believe that supplying a product is only one part of an industrial solution.
               </p>
-            </div>
+            </motion.div>
 
             {/* ─── HORIZONTAL TREE TIMELINE HEADER (Nodes 01 -> 02 -> 03 -> 04 -> 05) ─── */}
-            <div className="max-w-4xl mx-auto mb-8 sm:mb-12 px-2">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+              className="max-w-4xl mx-auto mb-8 sm:mb-12 px-2"
+            >
               <div className="relative flex items-center justify-between">
                 {/* Horizontal Tree Stem Line */}
                 <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1.5 bg-blue-950/90 border border-blue-800/60 rounded-full -z-0 overflow-hidden">
@@ -355,8 +379,10 @@ export default function About() {
                   const isPassed = idx <= activeProcessStep;
 
                   return (
-                    <button
+                    <motion.button
                       key={step.num}
+                      whileHover={{ scale: 1.12 }}
+                      whileTap={{ scale: 0.92 }}
                       onClick={() => {
                         setActiveProcessStep(idx);
                         setIsProcessAutoPlaying(false);
@@ -384,14 +410,18 @@ export default function About() {
                       >
                         {step.title}
                       </span>
-                    </button>
+                    </motion.button>
                   );
                 })}
               </div>
-            </div>
+            </motion.div>
 
             {/* ─── AUTO-MOVING HORIZONTAL SLIDER CARD (DARK BLUE GLASSMORPHISM THEME) ─── */}
-            <div
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8, delay: 0.25, ease: "easeOut" }}
               className="max-w-4xl mx-auto"
               onMouseEnter={() => setIsProcessAutoPlaying(false)}
               onMouseLeave={() => setIsProcessAutoPlaying(true)}
@@ -400,14 +430,19 @@ export default function About() {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeProcessStep}
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -40 }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
                     className="bg-slate-950/90 border border-slate-800 shadow-[0_25px_60px_rgba(3,7,18,0.7)] backdrop-blur-xl rounded-3xl overflow-hidden grid md:grid-cols-12 items-stretch h-[480px] sm:h-[440px] md:h-[420px]"
                   >
-                    {/* Left Column: Feature Photo */}
-                    <div className="md:col-span-5 relative h-48 md:h-full bg-slate-950 overflow-hidden shrink-0">
+                    {/* Left Column: Feature Photo (Animates in from Left) */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -60 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                      className="md:col-span-5 relative h-48 md:h-full bg-slate-950 overflow-hidden shrink-0"
+                    >
                       <img
                         src={processSteps[activeProcessStep].img}
                         alt={`SI Technology - Step ${processSteps[activeProcessStep].num} ${processSteps[activeProcessStep].title}`}
@@ -426,10 +461,15 @@ export default function About() {
                           {processSteps[activeProcessStep].tag}
                         </span>
                       </div>
-                    </div>
+                    </motion.div>
 
-                    {/* Right Column: Step Description & Deliverables */}
-                    <div className="md:col-span-7 p-5 sm:p-7 lg:p-8 flex flex-col justify-between h-full space-y-4 text-left overflow-hidden">
+                    {/* Right Column: Step Description & Deliverables (Animates in from Right) */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 60 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                      className="md:col-span-7 p-5 sm:p-7 lg:p-8 flex flex-col justify-between h-full space-y-4 text-left overflow-hidden"
+                    >
                       <div className="space-y-3 overflow-y-auto pr-1">
                         <div className="flex items-center gap-3">
                           <div className="w-9 h-9 rounded-xl bg-blue-900/60 text-sky-300 font-mono font-bold flex items-center justify-center shrink-0 border border-blue-700/60">
@@ -456,10 +496,16 @@ export default function About() {
                           </span>
                           <ul className="space-y-1">
                             {processSteps[activeProcessStep].highlights.map((item, i) => (
-                              <li key={i} className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-200">
+                              <motion.li
+                                key={i}
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.35, delay: 0.15 + i * 0.08 }}
+                                className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-200"
+                              >
                                 <CheckCircle size={15} className="text-sky-400 shrink-0" />
                                 <span>{item}</span>
-                              </li>
+                              </motion.li>
                             ))}
                           </ul>
                         </div>
@@ -484,7 +530,9 @@ export default function About() {
 
                         {/* Prev / Next Arrow Controls */}
                         <div className="flex items-center gap-2">
-                          <button
+                          <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
                             onClick={() => {
                               setActiveProcessStep((prev) => (prev - 1 + processSteps.length) % processSteps.length);
                               setIsProcessAutoPlaying(false);
@@ -493,8 +541,10 @@ export default function About() {
                             aria-label="Previous step"
                           >
                             <ChevronLeft size={18} />
-                          </button>
-                          <button
+                          </motion.button>
+                          <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
                             onClick={() => {
                               setActiveProcessStep((prev) => (prev + 1) % processSteps.length);
                               setIsProcessAutoPlaying(false);
@@ -503,15 +553,14 @@ export default function About() {
                             aria-label="Next step"
                           >
                             <ChevronRight size={18} />
-                          </button>
+                          </motion.button>
                         </div>
                       </div>
-                    </div>
-
+                    </motion.div>
                   </motion.div>
                 </AnimatePresence>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </section>
@@ -525,12 +574,12 @@ export default function About() {
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* Header Block */}
-            <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
               <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                initial={{ opacity: 0, y: -20, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
                 className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200/80 rounded-full px-4 py-1.5 text-xs text-blue-800 font-mono font-bold uppercase tracking-widest shadow-sm"
               >
                 <Sparkles size={14} className="text-blue-600 animate-pulse" />
@@ -538,10 +587,10 @@ export default function About() {
               </motion.div>
 
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
                 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 tracking-tight leading-[1.15]"
               >
                 More Than Products.{" "}
@@ -551,10 +600,10 @@ export default function About() {
               </motion.h2>
 
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
                 className="text-slate-600 text-sm sm:text-base font-normal leading-relaxed max-w-2xl mx-auto"
               >
                 At S I Technology, an industrial supplier should do more than supply off-the-shelf components. We deeply analyze your engineering challenges to engineer turnkey, reliable, long-term operational success.
@@ -571,7 +620,7 @@ export default function About() {
                   icon: TrendingUp,
                   desc: "Designing tailored structural layouts that minimize operator fatigue and accelerate assembly cycles.",
                   gradient: "from-blue-500 to-cyan-500",
-                  bgGlow: "hover:border-blue-500/50 hover:shadow-blue-500/10",
+                  bgGlow: "hover:border-blue-500/60 hover:shadow-blue-500/20",
                   badgeBg: "bg-blue-950/80 text-blue-400 border-blue-800/80"
                 },
                 {
@@ -581,7 +630,7 @@ export default function About() {
                   icon: Layers,
                   desc: "Structured profile systems and accessories that optimize shopfloor space and component access.",
                   gradient: "from-indigo-500 to-blue-600",
-                  bgGlow: "hover:border-indigo-500/50 hover:shadow-indigo-500/10",
+                  bgGlow: "hover:border-indigo-500/60 hover:shadow-indigo-500/20",
                   badgeBg: "bg-indigo-950/80 text-indigo-400 border-indigo-800/80"
                 },
                 {
@@ -591,7 +640,7 @@ export default function About() {
                   icon: ShieldCheck,
                   desc: "Precision engineering and robust aluminum extrusions tested to withstand demanding industrial loads.",
                   gradient: "from-emerald-500 to-teal-600",
-                  bgGlow: "hover:border-emerald-500/50 hover:shadow-emerald-500/10",
+                  bgGlow: "hover:border-emerald-500/60 hover:shadow-emerald-500/20",
                   badgeBg: "bg-emerald-950/80 text-emerald-400 border-emerald-800/80"
                 },
                 {
@@ -601,7 +650,7 @@ export default function About() {
                   icon: Cog,
                   desc: "Modular interconnectivity allowing fast system expansion and seamless re-configurations as production grows.",
                   gradient: "from-teal-500 to-cyan-600",
-                  bgGlow: "hover:border-teal-500/50 hover:shadow-teal-500/10",
+                  bgGlow: "hover:border-teal-500/60 hover:shadow-teal-500/20",
                   badgeBg: "bg-teal-950/80 text-teal-400 border-teal-800/80"
                 }
               ].map((card, idx) => {
@@ -609,23 +658,27 @@ export default function About() {
                 return (
                   <motion.div
                     key={card.title}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    whileHover={{ y: -8 }}
+                    initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.6, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -10, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     className={`group relative bg-gradient-to-b from-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-7 border border-slate-800/90 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden ${card.bgGlow}`}
                   >
                     {/* Corner Subtle Gradient Accent Light */}
-                    <div className={`absolute top-0 right-0 w-28 h-28 bg-gradient-to-br ${card.gradient} opacity-[0.12] rounded-bl-full pointer-events-none group-hover:opacity-[0.25] transition-opacity duration-300`} />
+                    <div className={`absolute top-0 right-0 w-28 h-28 bg-gradient-to-br ${card.gradient} opacity-[0.12] rounded-bl-full pointer-events-none group-hover:opacity-[0.3] group-hover:scale-110 transition-all duration-500`} />
 
                     <div>
                       {/* Top Bar: Icon + Pill Badge */}
                       <div className="flex items-center justify-between mb-5">
-                        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform duration-300`}>
+                        <motion.div
+                          whileHover={{ rotate: 10, scale: 1.1 }}
+                          className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform duration-300`}
+                        >
                           <IconComp size={22} />
-                        </div>
-                        <span className={`text-[11px] font-mono font-bold px-2.5 py-1 rounded-full border ${card.badgeBg}`}>
+                        </motion.div>
+                        <span className={`text-[11px] font-mono font-bold px-2.5 py-1 rounded-full border ${card.badgeBg} shadow-sm`}>
                           {card.badge}
                         </span>
                       </div>
@@ -665,7 +718,13 @@ export default function About() {
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* Section Header */}
-            <div className="text-center max-w-3xl mx-auto mb-3 sm:mb-4 space-y-1.5">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, y: -20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="text-center max-w-3xl mx-auto mb-4 sm:mb-6 space-y-2"
+            >
               <span className="inline-flex items-center gap-2 bg-blue-950/80 border border-blue-800/80 rounded-full px-3.5 py-1 text-xs text-blue-400 font-mono font-bold uppercase tracking-wider shadow-sm">
                 <Sparkles size={13} className="text-blue-400 animate-pulse" />
                 OPERATING PHILOSOPHY
@@ -676,16 +735,26 @@ export default function About() {
               <p className="text-slate-300 text-xs sm:text-sm font-normal max-w-xl mx-auto leading-relaxed">
                 Six foundational pillars driving our commitment to engineering precision, product reliability, and client success.
               </p>
-            </div>
+            </motion.div>
 
-            {/* Circular Dial Container */}
-            <div
+            {/* Circular Dial Container - Zoom Entrance Animation */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.65, rotate: -15 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="relative w-full max-w-[320px] xs:max-w-[360px] sm:max-w-[480px] lg:max-w-[510px] aspect-square mx-auto flex items-center justify-center"
               onMouseEnter={() => setIsPhilosophyAutoPlaying(false)}
               onMouseLeave={() => setIsPhilosophyAutoPlaying(true)}
             >
-              {/* Thin Track Ring Line */}
-              <div className="absolute inset-5 sm:inset-9 lg:inset-10 rounded-full border-2 border-slate-700/80 shadow-2xl" />
+              {/* Thin Track Ring Line - Zoom Entrance */}
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-5 sm:inset-9 lg:inset-10 rounded-full border-2 border-slate-700/80 shadow-2xl shadow-blue-500/20"
+              />
 
               {/* 6 Circular Node Buttons Positioned Along Perimeter */}
               {coreValues.map((val, idx) => {
@@ -703,16 +772,20 @@ export default function About() {
                   <motion.button
                     key={val.title}
                     type="button"
+                    initial={{ opacity: 0, scale: 0.2 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 + idx * 0.08, type: "spring", stiffness: 180 }}
                     onClick={() => {
                       setActivePhilosophy(idx);
                       setIsPhilosophyAutoPlaying(false);
                     }}
                     style={{ left: `${leftPct}%`, top: `${topPct}%` }}
-                    whileHover={{ scale: isActive ? 1.25 : 1.15 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: isActive ? 1.3 : 1.2, rotate: 12 }}
+                    whileTap={{ scale: 0.9 }}
                     className={`absolute -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-out z-20 flex items-center justify-center rounded-full ${
                       isActive
-                        ? "w-14 h-14 sm:w-20 sm:h-20 bg-gradient-to-tr from-blue-600 via-blue-500 to-sky-400 text-white shadow-2xl shadow-blue-500/50 border-4 border-white scale-125"
+                        ? "w-14 h-14 sm:w-20 sm:h-20 bg-gradient-to-tr from-blue-600 via-blue-500 to-sky-400 text-white shadow-2xl shadow-blue-500/60 border-4 border-white scale-125 ring-4 ring-blue-400/40"
                         : "w-11 h-11 sm:w-16 sm:h-16 bg-white border border-slate-200 shadow-xl text-blue-600 hover:border-blue-400 hover:scale-110"
                     }`}
                   >
@@ -721,15 +794,21 @@ export default function About() {
                 );
               })}
 
-              {/* Center Info Content Box (Elevated Larger Crisp White Disc) */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-3 sm:p-6 z-10 pointer-events-none">
+              {/* Center Info Content Box (Elevated Larger Crisp White Disc) - Spring Pop Zoom */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3, type: "spring", bounce: 0.35 }}
+                className="absolute inset-0 flex flex-col items-center justify-center text-center p-3 sm:p-6 z-10 pointer-events-none"
+              >
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activePhilosophy}
-                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9, y: -10 }}
-                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    initial={{ opacity: 0, scale: 0.75, rotate: -5 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    exit={{ opacity: 0, scale: 0.75, rotate: 5 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                     className="w-[220px] h-[220px] xs:w-[250px] xs:h-[250px] sm:w-[330px] sm:h-[330px] lg:w-[350px] lg:h-[350px] rounded-full bg-white text-slate-900 border-4 border-slate-100 shadow-[0_25px_65px_rgba(0,0,0,0.7)] p-4 sm:p-9 flex flex-col items-center justify-center space-y-2 sm:space-y-3 pointer-events-auto shrink-0"
                   >
                     <span className="inline-block text-[10px] sm:text-xs font-mono font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
@@ -762,8 +841,8 @@ export default function About() {
                     </div>
                   </motion.div>
                 </AnimatePresence>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
 
