@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { ZoomIn } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { galleryItems, getCategoryForItem } from "../../data/galleryItems";
 
 export default function Gallery() {
@@ -111,35 +111,51 @@ export default function Gallery() {
             </div>
 
             {/* Grid layout with 4 columns per row on desktop */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {filteredItems.map((item, index) => (
-                <div
-                  key={item.id}
-                  onClick={() => handleImageClick(index)}
-                  className="bg-white border border-blue-100 rounded-2xl overflow-hidden shadow-sm hover:border-blue-500 hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col justify-between"
-                >
-                  <div className="relative overflow-hidden aspect-[4/3] w-full">
-                    <img
-                      src={item.src}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-[#0a1128]/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                      <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                        <ZoomIn size={18} />
+            <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <AnimatePresence mode="popLayout">
+                {filteredItems.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    layout
+                    onClick={() => handleImageClick(index)}
+                    initial={{ opacity: 0, scale: 0.7, y: 50 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    viewport={{ once: false, margin: "-30px" }}
+                    exit={{ opacity: 0, scale: 0.7 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: (index % 4) * 0.05,
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20
+                    }}
+                    whileHover={{ scale: 1.05, y: -6 }}
+                    className="bg-white border border-blue-100 rounded-2xl overflow-hidden shadow-sm hover:border-blue-500 hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col justify-between"
+                  >
+                    <div className="relative overflow-hidden aspect-[4/3] w-full bg-slate-100">
+                      <img
+                        src={item.src}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-[#0a1128]/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                          <ZoomIn size={18} />
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="p-4 border-t border-blue-50 flex-grow flex items-center">
-                    <h1 className="text-xs sm:text-sm font-bold text-[#0f172a] group-hover:text-blue-600 transition-colors leading-snug">
-                      {item.title}
-                    </h1>
-                  </div>
-                </div>
-              ))}
-            </div>
+                    <div className="p-4 border-t border-blue-50 flex-grow flex items-center">
+                      <h1 className="text-xs sm:text-sm font-bold text-[#0f172a] group-hover:text-blue-600 transition-colors leading-snug">
+                        {item.title}
+                      </h1>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
           </div>
         </div>
       </div>

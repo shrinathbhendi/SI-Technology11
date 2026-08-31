@@ -34,6 +34,23 @@ export default function Home() {
   const [activePillar, setActivePillar] = useState(0);
   const [pillarPaused, setPillarPaused] = useState(false);
 
+  // Trigger statistics counter when scrolled into view
+  useEffect(() => {
+    if (!statsRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisibleStats(true);
+        } else {
+          setVisibleStats(false);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(statsRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   // Auto-slide for Operating Pillars (2s interval)
   useEffect(() => {
     if (pillarPaused) return;
@@ -419,8 +436,8 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: false, margin: "-30px" }}
+                transition={{ duration: 0.5, delay: 0.05, type: "spring", stiffness: 280, damping: 18 }}
                 className="absolute top-3 left-3 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-sky-400/45 border border-white/50 shadow-sm pointer-events-none z-0"
               />
 
@@ -428,8 +445,8 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: 0.2 }}
+                viewport={{ once: false, margin: "-30px" }}
+                transition={{ duration: 0.6, delay: 0.1, type: "spring", stiffness: 260, damping: 18 }}
                 className="absolute top-8 left-[30%] sm:left-[34%] w-28 h-28 sm:w-36 sm:h-36 lg:w-44 lg:h-44 rounded-full bg-sky-300/40 border border-white/40 shadow-lg pointer-events-none z-0"
               />
 
@@ -437,8 +454,8 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: 0.3 }}
+                viewport={{ once: false, margin: "-30px" }}
+                transition={{ duration: 0.6, delay: 0.15, type: "spring", stiffness: 260, damping: 18 }}
                 className="absolute top-[48%] left-[36%] sm:left-[39%] w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full bg-sky-400/35 border border-white/35 shadow-md pointer-events-none z-0"
               />
 
@@ -446,8 +463,8 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: false, margin: "-30px" }}
+                transition={{ duration: 0.5, delay: 0.2, type: "spring", stiffness: 280, damping: 18 }}
                 className="absolute bottom-5 left-5 w-14 h-14 sm:w-18 sm:h-18 rounded-full bg-sky-400/40 border border-white/40 shadow-sm pointer-events-none z-0"
               />
 
@@ -455,8 +472,8 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: 0.45 }}
+                viewport={{ once: false, margin: "-30px" }}
+                transition={{ duration: 0.6, delay: 0.25, type: "spring", stiffness: 260, damping: 18 }}
                 className="absolute bottom-4 left-[32%] sm:left-[35%] w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-sky-300/45 border border-white/45 shadow-md pointer-events-none z-0"
               />
 
@@ -464,8 +481,8 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: 0.25 }}
+                viewport={{ once: false, margin: "-30px" }}
+                transition={{ duration: 0.6, delay: 0.12, type: "spring", stiffness: 260, damping: 18 }}
                 className="absolute -top-4 -right-4 w-32 h-32 sm:w-44 sm:h-44 lg:w-52 lg:h-52 rounded-full bg-sky-400/35 border border-white/45 shadow-lg pointer-events-none z-0"
               />
 
@@ -473,8 +490,8 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: 0.5 }}
+                viewport={{ once: false, margin: "-30px" }}
+                transition={{ duration: 0.5, delay: 0.28, type: "spring", stiffness: 280, damping: 18 }}
                 className="absolute top-[45%] right-2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-sky-400/40 border border-white/35 shadow-sm pointer-events-none z-0"
               />
 
@@ -482,8 +499,8 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: 0.55 }}
+                viewport={{ once: false, margin: "-30px" }}
+                transition={{ duration: 0.5, delay: 0.3, type: "spring", stiffness: 280, damping: 18 }}
                 className="absolute bottom-6 right-6 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sky-400/45 border border-white/35 shadow-sm pointer-events-none z-0"
               />
 
@@ -491,22 +508,22 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: 0.35 }}
+                viewport={{ once: false, margin: "-30px" }}
+                transition={{ duration: 0.4, delay: 0.18, type: "spring", stiffness: 300, damping: 18 }}
                 className="absolute top-1/3 left-[46%] w-6 h-6 rounded-full bg-sky-400/50 border border-white/40 pointer-events-none z-0"
               />
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: false, margin: "-30px" }}
+                transition={{ duration: 0.4, delay: 0.22, type: "spring", stiffness: 300, damping: 18 }}
                 className="absolute bottom-1/3 left-[43%] w-8 h-8 rounded-full bg-sky-300/45 border border-white/40 pointer-events-none z-0"
               />
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: 0.45 }}
+                viewport={{ once: false, margin: "-30px" }}
+                transition={{ duration: 0.4, delay: 0.24, type: "spring", stiffness: 300, damping: 18 }}
                 className="absolute top-1/4 right-[25%] w-5 h-5 rounded-full bg-sky-400/40 border border-white/30 pointer-events-none z-0"
               />
 
@@ -584,10 +601,10 @@ export default function Home() {
 
                     {/* 1. CENTER MAIN DARK BLUE CIRCLE: Company Logo Hub (Quick Spin & Zoom 1st) */}
                     <motion.div
-                      initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                      initial={{ opacity: 0, scale: 0.1, rotate: -180 }}
                       whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.5, delay: 0.05, type: "spring", stiffness: 220, damping: 16 }}
+                      viewport={{ once: false, margin: "-30px" }}
+                      transition={{ duration: 0.5, delay: 0.05, type: "spring", stiffness: 280, damping: 17 }}
                       whileHover={{ scale: 1.08, zIndex: 40 }}
                       className="absolute z-20 w-44 h-44 xs:w-52 xs:h-52 sm:w-64 sm:h-64 rounded-full bg-[#0a1128] border-4 border-white shadow-2xl overflow-hidden flex flex-col items-center justify-center cursor-pointer transition-all duration-500 group/center"
                     >
@@ -604,10 +621,10 @@ export default function Home() {
 
                     {/* 2. DARK BLUE ACCENT CIRCLE (Top-Center): Established 2018 Badge (Quick Spin & Zoom 2nd) */}
                     <motion.div
-                      initial={{ opacity: 0, scale: 0, rotate: 180, y: -30 }}
+                      initial={{ opacity: 0, scale: 0.1, rotate: 180, y: -30 }}
                       whileInView={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.5, delay: 0.12, type: "spring", stiffness: 220, damping: 16 }}
+                      viewport={{ once: false, margin: "-30px" }}
+                      transition={{ duration: 0.5, delay: 0.12, type: "spring", stiffness: 280, damping: 17 }}
                       whileHover={{ scale: 1.15, zIndex: 40 }}
                       className="absolute -top-4 left-1/3 -translate-x-1/2 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#0a1128] border-4 border-white shadow-lg flex flex-col items-center justify-center p-2 text-center text-white cursor-pointer z-10"
                     >
@@ -622,10 +639,10 @@ export default function Home() {
 
                     {/* 3. LIGHT BLUE CIRCLE #1 (Top-Right): Product Photo 1 (Aluminium Profiles - Quick Spin & Zoom 3rd) */}
                     <motion.div
-                      initial={{ opacity: 0, scale: 0, rotate: -180, x: 40, y: -20 }}
+                      initial={{ opacity: 0, scale: 0.1, rotate: -180, x: 40, y: -20 }}
                       whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0, y: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.5, delay: 0.19, type: "spring", stiffness: 220, damping: 16 }}
+                      viewport={{ once: false, margin: "-30px" }}
+                      transition={{ duration: 0.5, delay: 0.18, type: "spring", stiffness: 280, damping: 17 }}
                       whileHover={{ scale: 1.12, zIndex: 40 }}
                       className="absolute top-2 right-4 xs:right-8 sm:top-0 sm:right-6 w-32 h-32 xs:w-36 xs:h-36 sm:w-44 sm:h-44 rounded-full bg-sky-500 border-4 border-white shadow-xl overflow-hidden cursor-pointer transition-all duration-500 group/p1 z-10"
                     >
@@ -638,10 +655,10 @@ export default function Home() {
 
                     {/* 4. LIGHT BLUE CIRCLE #2 (Mid-Left): Product Photo 2 (Industrial Workstations - Quick Spin & Zoom 4th) */}
                     <motion.div
-                      initial={{ opacity: 0, scale: 0, rotate: 180, x: -40 }}
+                      initial={{ opacity: 0, scale: 0.1, rotate: 180, x: -40 }}
                       whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.5, delay: 0.26, type: "spring", stiffness: 220, damping: 16 }}
+                      viewport={{ once: false, margin: "-30px" }}
+                      transition={{ duration: 0.5, delay: 0.24, type: "spring", stiffness: 280, damping: 17 }}
                       whileHover={{ scale: 1.12, zIndex: 40 }}
                       className="absolute top-16 left-0 xs:left-2 sm:top-20 sm:left-4 w-28 h-28 xs:w-32 xs:h-32 sm:w-40 sm:h-40 rounded-full bg-blue-600 border-4 border-white shadow-xl overflow-hidden cursor-pointer transition-all duration-500 group/p2 z-10"
                     >
@@ -654,10 +671,10 @@ export default function Home() {
 
                     {/* 5. DARK BLUE ACCENT CIRCLE (Far-Right): Pune Base (Quick Spin & Zoom 5th) */}
                     <motion.div
-                      initial={{ opacity: 0, scale: 0, rotate: -180, x: 40 }}
+                      initial={{ opacity: 0, scale: 0.1, rotate: -180, x: 40 }}
                       whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.5, delay: 0.33, type: "spring", stiffness: 220, damping: 16 }}
+                      viewport={{ once: false, margin: "-30px" }}
+                      transition={{ duration: 0.5, delay: 0.30, type: "spring", stiffness: 280, damping: 17 }}
                       whileHover={{ scale: 1.15, zIndex: 40 }}
                       className="absolute top-1/2 -right-4 -translate-y-1/2 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#0f172a] border-4 border-white shadow-lg flex flex-col items-center justify-center p-2 text-center text-white cursor-pointer z-10"
                     >
@@ -669,10 +686,10 @@ export default function Home() {
 
                     {/* 6. LIGHT BLUE CIRCLE #3 (Bottom-Right): Product Photo 3 (Pipe & Joint Systems - Quick Spin & Zoom 6th) */}
                     <motion.div
-                      initial={{ opacity: 0, scale: 0, rotate: 180, x: 30, y: 30 }}
+                      initial={{ opacity: 0, scale: 0.1, rotate: 180, x: 30, y: 30 }}
                       whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0, y: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.5, delay: 0.40, type: "spring", stiffness: 220, damping: 16 }}
+                      viewport={{ once: false, margin: "-30px" }}
+                      transition={{ duration: 0.5, delay: 0.36, type: "spring", stiffness: 280, damping: 17 }}
                       whileHover={{ scale: 1.12, zIndex: 40 }}
                       className="absolute bottom-4 right-2 xs:right-6 sm:bottom-4 sm:right-8 w-32 h-32 xs:w-36 xs:h-36 sm:w-44 sm:h-44 rounded-full bg-sky-400 border-4 border-white shadow-xl overflow-hidden cursor-pointer transition-all duration-500 group/p3 z-10"
                     >
@@ -685,10 +702,10 @@ export default function Home() {
 
                     {/* 7. LIGHT BLUE CIRCLE #4 (Bottom-Left): Product Photo 4 (3D Custom Extrusion - Quick Spin & Zoom 7th) */}
                     <motion.div
-                      initial={{ opacity: 0, scale: 0, rotate: -180, x: -30, y: 30 }}
+                      initial={{ opacity: 0, scale: 0.1, rotate: -180, x: -30, y: 30 }}
                       whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0, y: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.5, delay: 0.47, type: "spring", stiffness: 220, damping: 16 }}
+                      viewport={{ once: false, margin: "-30px" }}
+                      transition={{ duration: 0.5, delay: 0.42, type: "spring", stiffness: 280, damping: 17 }}
                       whileHover={{ scale: 1.12, zIndex: 40 }}
                       className="absolute bottom-0 left-6 xs:left-10 sm:bottom-2 sm:left-12 w-28 h-28 xs:w-32 xs:h-32 sm:w-38 sm:h-38 rounded-full bg-blue-500 border-4 border-white shadow-xl overflow-hidden cursor-pointer transition-all duration-500 group/p4 z-10"
                     >
@@ -727,7 +744,7 @@ export default function Home() {
                 className="bg-white rounded-2xl sm:rounded-3xl border-t-4 border-t-blue-700 border-x border-b border-slate-200/80 shadow-[0_15px_30px_rgba(15,23,42,0.08)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.2)] p-7 sm:p-9 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 cursor-pointer group"
               >
                 <div className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-blue-700 group-hover:text-blue-600 transition-colors duration-300 mb-2 tracking-tight">
-                  {visibleStats ? <CountUp start={0} end={8} duration={3} /> : "8"}+
+                  {visibleStats ? <CountUp start={0} end={8} duration={2.5} /> : "0"}+
                 </div>
                 <p className="text-xs sm:text-sm font-display font-bold tracking-wider text-slate-800 uppercase leading-snug">
                   Years of Experience
@@ -746,7 +763,7 @@ export default function Home() {
                 className="bg-white rounded-2xl sm:rounded-3xl border-t-4 border-t-blue-700 border-x border-b border-slate-200/80 shadow-[0_15px_30px_rgba(15,23,42,0.08)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.2)] p-7 sm:p-9 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 cursor-pointer group"
               >
                 <div className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-blue-700 group-hover:text-blue-600 transition-colors duration-300 mb-2 tracking-tight">
-                  {visibleStats ? <CountUp start={0} end={500} duration={3} /> : "500"}+
+                  {visibleStats ? <CountUp start={0} end={500} duration={2.5} separator="," /> : "0"}+
                 </div>
                 <p className="text-xs sm:text-sm font-display font-bold tracking-wider text-slate-800 uppercase leading-snug">
                   Happy Clients
@@ -765,7 +782,7 @@ export default function Home() {
                 className="bg-white rounded-2xl sm:rounded-3xl border-t-4 border-t-blue-700 border-x border-b border-slate-200/80 shadow-[0_15px_30px_rgba(15,23,42,0.08)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.2)] p-7 sm:p-9 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 cursor-pointer group"
               >
                 <div className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-blue-700 group-hover:text-blue-600 transition-colors duration-300 mb-2 tracking-tight">
-                  {visibleStats ? <CountUp start={0} end={500} duration={3} /> : "500"}+
+                  {visibleStats ? <CountUp start={0} end={500} duration={2.5} separator="," /> : "0"}+
                 </div>
                 <p className="text-xs sm:text-sm font-display font-bold tracking-wider text-slate-800 uppercase leading-snug">
                   Precision Products
@@ -784,7 +801,7 @@ export default function Home() {
                 className="bg-white rounded-2xl sm:rounded-3xl border-t-4 border-t-blue-700 border-x border-b border-slate-200/80 shadow-[0_15px_30px_rgba(15,23,42,0.08)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.2)] p-7 sm:p-9 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1.5 cursor-pointer group"
               >
                 <div className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-blue-700 group-hover:text-blue-600 transition-colors duration-300 mb-2 tracking-tight">
-                  4.8/5
+                  {visibleStats ? <CountUp start={0} end={4.8} decimals={1} duration={2.5} /> : "0.0"}/5
                 </div>
                 <p className="text-xs sm:text-sm font-display font-bold tracking-wider text-slate-800 uppercase leading-snug">
                   Client Rating

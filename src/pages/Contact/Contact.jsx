@@ -105,18 +105,19 @@ export default function Contact() {
             <div className="lg:col-span-5 order-2 lg:order-1 flex flex-col gap-6">
               <h2 className="text-xl xs:text-2xl sm:text-3xl font-black text-[#0f172a] font-display text-center lg:text-left">Talk to Our Team</h2>
               
-              <div className="bg-white border border-blue-100 rounded-3xl p-5 sm:p-8 shadow-md flex-1 space-y-8 relative overflow-hidden">
-                <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
+              <div className="bg-[#0f172a] text-white border border-blue-900 rounded-3xl p-5 sm:p-8 shadow-xl flex-1 space-y-8 relative overflow-hidden">
+                <div className="absolute inset-0 bg-grid-light opacity-5 pointer-events-none" />
+                <div className="absolute -top-24 -left-24 w-60 h-60 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
                 
                 {/* Physical Address */}
-                <div className="flex gap-4 relative z-10">
-                  <div className="w-10 h-10 bg-blue-50 border border-blue-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
-                    <MapPin size={18} />
+                <div className="flex gap-4 relative z-10 group">
+                  <div className="w-11 h-11 bg-[#0a1128] border border-blue-800 text-blue-400 rounded-xl flex items-center justify-center shrink-0 shadow-sm group-hover:border-blue-500 group-hover:scale-105 transition-all duration-300">
+                    <MapPin size={20} />
                   </div>
                   <div className="space-y-1.5">
-                    <span className="text-[10px] font-mono text-blue-600 uppercase tracking-widest block font-bold leading-none">Office &amp; Shed Location</span>
-                    <p className="text-slate-700 text-xs sm:text-sm leading-relaxed font-light">
-                      <strong>SI TECHNOLOGY</strong>
+                    <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest block font-bold leading-none">Office &amp; Shed Location</span>
+                    <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-light">
+                      <strong className="text-white font-semibold">SI TECHNOLOGY</strong>
                       <br />
                       {SITE_CONFIG.contact.address.line1}
                       <br />
@@ -128,45 +129,45 @@ export default function Contact() {
                 </div>
 
                 {/* Telephone Numbers */}
-                <div className="flex gap-4 relative z-10">
-                  <div className="w-10 h-10 bg-blue-50 border border-blue-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
-                    <Phone size={18} />
+                <div className="flex gap-4 relative z-10 group">
+                  <div className="w-11 h-11 bg-[#0a1128] border border-blue-800 text-blue-400 rounded-xl flex items-center justify-center shrink-0 shadow-sm group-hover:border-blue-500 group-hover:scale-105 transition-all duration-300">
+                    <Phone size={20} />
                   </div>
                   <div className="space-y-1">
-                    <span className="text-[10px] font-mono text-blue-600 uppercase tracking-widest block font-bold leading-none">Phone Lines</span>
-                    <a href={getTelHref()} className="text-slate-800 text-sm font-semibold hover:text-blue-600 transition-colors block">
+                    <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest block font-bold leading-none">Phone Lines</span>
+                    <a href={getTelHref()} className="text-white text-sm font-semibold hover:text-blue-400 transition-colors block">
                       {SITE_CONFIG.contact.phone}
                     </a>
-                    <a href="tel:+919764674113" className="text-slate-800 text-sm font-semibold hover:text-blue-600 transition-colors block">
+                    <a href="tel:+919764674113" className="text-slate-300 text-sm font-medium hover:text-blue-400 transition-colors block">
                       {SITE_CONFIG.contact.phoneSecondary}
                     </a>
                   </div>
                 </div>
 
                 {/* Email Address */}
-                <div className="flex gap-4 relative z-10">
-                  <div className="w-10 h-10 bg-blue-50 border border-blue-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
-                    <Mail size={18} />
+                <div className="flex gap-4 relative z-10 group">
+                  <div className="w-11 h-11 bg-[#0a1128] border border-blue-800 text-blue-400 rounded-xl flex items-center justify-center shrink-0 shadow-sm group-hover:border-blue-500 group-hover:scale-105 transition-all duration-300">
+                    <Mail size={20} />
                   </div>
                   <div className="space-y-1">
-                    <span className="text-[10px] font-mono text-blue-600 uppercase tracking-widest block font-bold leading-none">Email Address</span>
-                    <a href={getMailtoHref()} className="text-slate-800 text-sm font-semibold hover:text-blue-600 transition-colors block">
+                    <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest block font-bold leading-none">Email Address</span>
+                    <a href={getMailtoHref()} className="text-white text-sm font-semibold hover:text-blue-400 transition-colors block">
                       {SITE_CONFIG.contact.email}
                     </a>
-                    <a href={`mailto:${SITE_CONFIG.contact.emailSecondary}`} className="text-slate-500 text-xs hover:text-blue-600 transition-colors block">
+                    <a href={`mailto:${SITE_CONFIG.contact.emailSecondary}`} className="text-slate-300 text-xs hover:text-blue-400 transition-colors block">
                       {SITE_CONFIG.contact.emailSecondary}
                     </a>
                   </div>
                 </div>
 
                 {/* Business Hours */}
-                <div className="flex gap-4 relative z-10">
-                  <div className="w-10 h-10 bg-blue-50 border border-blue-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
-                    <Clock size={18} />
+                <div className="flex gap-4 relative z-10 group">
+                  <div className="w-11 h-11 bg-[#0a1128] border border-blue-800 text-blue-400 rounded-xl flex items-center justify-center shrink-0 shadow-sm group-hover:border-blue-500 group-hover:scale-105 transition-all duration-300">
+                    <Clock size={20} />
                   </div>
                   <div className="space-y-1">
-                    <span className="text-[10px] font-mono text-blue-600 uppercase tracking-widest block font-bold leading-none">Business Hours</span>
-                    <p className="text-slate-700 text-xs sm:text-sm font-light">
+                    <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest block font-bold leading-none">Business Hours</span>
+                    <p className="text-slate-200 text-xs sm:text-sm font-light">
                       {SITE_CONFIG.contact.workingHours}
                     </p>
                   </div>
